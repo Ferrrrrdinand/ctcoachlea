@@ -4,6 +4,19 @@ Countdown Timer modern dengan background grid biru, tipografi elegan (*Bebas Neu
 
 ---
 
+## 🔒 Aturan Foto Gelembung: 1 Foto = 1 Gelembung
+Sistem menerapkan aturan ketat: **setiap foto hanya boleh menempati 1 gelembung (tidak bisa diduplikat ke gelembung lain)**.
+
+### Status Gelembung Saat Ini:
+- 🫧 **Gelembung 1 (Bawah Kiri)**: Foto 1 (*Selfie doa bersama*)
+- 🫧 **Gelembung 2 (Atas Kiri)**: Bening / Kosong *(siap untuk foto baru)*
+- 🫧 **Gelembung 3 (Tengah Kiri)**: Bening / Kosong *(siap untuk foto baru)*
+- 🫧 **Gelembung 4 (Tengah Kanan)**: Foto 2 (*Pose tangan bentuk hati*)
+- 🫧 **Gelembung 5 (Atas Kanan)**: Bening / Kosong *(siap untuk foto baru)*
+- 🫧 **Gelembung 6 (Bawah Kanan)**: Foto 3 (*Karya tote bag Spider-Man / kartu*)
+
+---
+
 ## 🚀 Cara Menjalankan
 
 1. Buka folder: `f:\Pelayanan\COUNTDOWN`
@@ -12,26 +25,23 @@ Countdown Timer modern dengan background grid biru, tipografi elegan (*Bebas Neu
 
 ---
 
-## 🫧 Cara Menambahkan Foto ke Dalam Gelembung
+## 🫧 Cara Menambah atau Mengganti Foto Gelembung
 
-Anda bisa memasukkan foto ke dalam masing-masing gelembung dengan **2 cara mudah**:
-
-### Cara 1: Langsung dari Menu Layar (Paling Praktis)
+### Cara 1: Langsung dari Menu Layar (Otomatis Cegah Duplikat)
 1. Buka `index.html` di browser.
 2. Klik tombol **`✏️ EDIT TEKS`** di panel kontrol bawah.
-3. Pada bagian **Foto di Dalam Gelembung**, klik tombol *Choose File* pada Gelembung yang diinginkan (Gelembung 1 s/d 6).
-4. Foto akan langsung tampil terapung di dalam gelembung dengan efek kaca 3D!
+3. Pada bagian **"Foto di Dalam Gelembung"**, pilih foto baru untuk nomor gelembung yang diinginkan.
+   - *Jika Anda memilih foto yang sama dengan gelembung lain, sistem akan otomatis menolak dan memunculkan peringatan.*
+   - Tersedia tombol **`✕ Hapus`** untuk mengosongkan kembali gelembung menjadi kaca bening.
 
 ### Cara 2: Menyimpan File Gambar ke Folder Proyek
-Cukup simpan foto Anda di folder `f:\Pelayanan\COUNTDOWN` dengan nama berkas berikut:
-- **`bubble1.jpg`** : Gelembung 1 (Bawah Kiri - Utama / Besar)
-- **`bubble2.jpg`** : Gelembung 2 (Atas Kiri)
-- **`bubble3.jpg`** : Gelembung 3 (Tengah Kiri)
-- **`bubble4.jpg`** : Gelembung 4 (Tengah Kanan)
-- **`bubble5.jpg`** : Gelembung 5 (Atas Kanan)
-- **`bubble6.jpg`** : Gelembung 6 (Bawah Kanan)
-
-*(Jika suatu gelembung tidak memiliki foto, gelembung tersebut akan otomatis tetap tampil sebagai gelembung kaca bening).*
+Simpan foto unik ke folder `f:\Pelayanan\COUNTDOWN` dengan nama berkas:
+- **`bubble1.jpg`** : Gelembung 1
+- **`bubble2.jpg`** : Gelembung 2
+- **`bubble3.jpg`** : Gelembung 3
+- **`bubble4.jpg`** : Gelembung 4
+- **`bubble5.jpg`** : Gelembung 5
+- **`bubble6.jpg`** : Gelembung 6
 
 ---
 
@@ -45,8 +55,8 @@ Cukup simpan foto Anda di folder `f:\Pelayanan\COUNTDOWN` dengan nama berkas ber
   - 🟩 **Green Screen (#00FF00)**: Untuk Chroma Keying di OBS.
   - ⬛ **Transparent**: Khusus OBS Browser Source (tembus pandang).
   - 🟪 **Magenta Screen**: Alternatif chroma key.
-- **Edit Teks & Logo**: Klik tombol `✏️ EDIT TEKS` untuk mengubah judul acara, nama pembicara, ukuran logo, atau mengunggah foto gelembung.
-- **Sembunyikan Panel Kontrol**: Tekan tombol **`H`** atau klik tab panel bawah untuk menyembunyikan kontrol agar tampilan bersih di proyektor / stream.
+- **Edit Teks, Logo & Foto**: Klik tombol `✏️ EDIT TEKS` untuk mengubah judul, nama pembicara, logo, atau foto gelembung.
+- **Sembunyikan Panel Kontrol**: Tekan tombol **`H`** atau klik tab panel bawah untuk menyembunyikan kontrol.
 
 ---
 

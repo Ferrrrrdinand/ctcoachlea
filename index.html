@@ -886,34 +886,55 @@
 
       <div class="form-row">
         <label>Foto di Dalam Gelembung</label>
+        <div style="font-size:0.72rem; color:#ffdd88; margin-bottom:4px; font-weight:600;">
+          🔒 Aturan: 1 Foto hanya bisa menempati 1 Gelembung (tidak boleh duplikat).
+        </div>
         <div style="display:grid; grid-template-columns: 1fr 1fr; gap:8px; margin-top:4px;">
-          <div>
-            <span style="font-size:0.73rem; color:#9ec2e0;">Gelembung 1 (Kiri Bawah):</span>
-            <input type="file" id="fileBubble1" accept="image/*" style="font-size:0.75rem; padding:3px; width:100%;">
+          <div style="background:rgba(0,0,0,0.25); padding:6px; border-radius:8px;">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <span style="font-size:0.73rem; color:#9ec2e0; font-weight:600;">Gelembung 1 (Kiri Bawah):</span>
+              <button type="button" onclick="removeBubblePhoto(1)" style="font-size:0.65rem; background:#b22; color:white; border:none; padding:2px 6px; border-radius:4px; cursor:pointer;" title="Kosongkan Gelembung">✕ Hapus</button>
+            </div>
+            <input type="file" id="fileBubble1" accept="image/*" style="font-size:0.73rem; padding:2px; width:100%; margin-top:3px;">
           </div>
-          <div>
-            <span style="font-size:0.73rem; color:#9ec2e0;">Gelembung 2 (Kiri Atas):</span>
-            <input type="file" id="fileBubble2" accept="image/*" style="font-size:0.75rem; padding:3px; width:100%;">
+          <div style="background:rgba(0,0,0,0.25); padding:6px; border-radius:8px;">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <span style="font-size:0.73rem; color:#9ec2e0; font-weight:600;">Gelembung 2 (Kiri Atas):</span>
+              <button type="button" onclick="removeBubblePhoto(2)" style="font-size:0.65rem; background:#b22; color:white; border:none; padding:2px 6px; border-radius:4px; cursor:pointer;" title="Kosongkan Gelembung">✕ Hapus</button>
+            </div>
+            <input type="file" id="fileBubble2" accept="image/*" style="font-size:0.73rem; padding:2px; width:100%; margin-top:3px;">
           </div>
-          <div>
-            <span style="font-size:0.73rem; color:#9ec2e0;">Gelembung 3 (Kiri Tengah):</span>
-            <input type="file" id="fileBubble3" accept="image/*" style="font-size:0.75rem; padding:3px; width:100%;">
+          <div style="background:rgba(0,0,0,0.25); padding:6px; border-radius:8px;">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <span style="font-size:0.73rem; color:#9ec2e0; font-weight:600;">Gelembung 3 (Kiri Tengah):</span>
+              <button type="button" onclick="removeBubblePhoto(3)" style="font-size:0.65rem; background:#b22; color:white; border:none; padding:2px 6px; border-radius:4px; cursor:pointer;" title="Kosongkan Gelembung">✕ Hapus</button>
+            </div>
+            <input type="file" id="fileBubble3" accept="image/*" style="font-size:0.73rem; padding:2px; width:100%; margin-top:3px;">
           </div>
-          <div>
-            <span style="font-size:0.73rem; color:#9ec2e0;">Gelembung 4 (Kanan Tengah):</span>
-            <input type="file" id="fileBubble4" accept="image/*" style="font-size:0.75rem; padding:3px; width:100%;">
+          <div style="background:rgba(0,0,0,0.25); padding:6px; border-radius:8px;">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <span style="font-size:0.73rem; color:#9ec2e0; font-weight:600;">Gelembung 4 (Kanan Tengah):</span>
+              <button type="button" onclick="removeBubblePhoto(4)" style="font-size:0.65rem; background:#b22; color:white; border:none; padding:2px 6px; border-radius:4px; cursor:pointer;" title="Kosongkan Gelembung">✕ Hapus</button>
+            </div>
+            <input type="file" id="fileBubble4" accept="image/*" style="font-size:0.73rem; padding:2px; width:100%; margin-top:3px;">
           </div>
-          <div>
-            <span style="font-size:0.73rem; color:#9ec2e0;">Gelembung 5 (Kanan Atas):</span>
-            <input type="file" id="fileBubble5" accept="image/*" style="font-size:0.75rem; padding:3px; width:100%;">
+          <div style="background:rgba(0,0,0,0.25); padding:6px; border-radius:8px;">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <span style="font-size:0.73rem; color:#9ec2e0; font-weight:600;">Gelembung 5 (Kanan Atas):</span>
+              <button type="button" onclick="removeBubblePhoto(5)" style="font-size:0.65rem; background:#b22; color:white; border:none; padding:2px 6px; border-radius:4px; cursor:pointer;" title="Kosongkan Gelembung">✕ Hapus</button>
+            </div>
+            <input type="file" id="fileBubble5" accept="image/*" style="font-size:0.73rem; padding:2px; width:100%; margin-top:3px;">
           </div>
-          <div>
-            <span style="font-size:0.73rem; color:#9ec2e0;">Gelembung 6 (Kanan Bawah):</span>
-            <input type="file" id="fileBubble6" accept="image/*" style="font-size:0.75rem; padding:3px; width:100%;">
+          <div style="background:rgba(0,0,0,0.25); padding:6px; border-radius:8px;">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <span style="font-size:0.73rem; color:#9ec2e0; font-weight:600;">Gelembung 6 (Kanan Bawah):</span>
+              <button type="button" onclick="removeBubblePhoto(6)" style="font-size:0.65rem; background:#b22; color:white; border:none; padding:2px 6px; border-radius:4px; cursor:pointer;" title="Kosongkan Gelembung">✕ Hapus</button>
+            </div>
+            <input type="file" id="fileBubble6" accept="image/*" style="font-size:0.73rem; padding:2px; width:100%; margin-top:3px;">
           </div>
         </div>
         <span style="font-size:0.7rem; color:#8ab1d0; margin-top:4px;">
-          💡 Tips: Anda juga bisa cukup menaruh file bernama <b>bubble1.jpg</b>, <b>bubble2.jpg</b>, dst. di folder proyek!
+          💡 Setiap file foto yang disimpan di folder harus unik: <b>bubble1.jpg</b>, <b>bubble2.jpg</b>, dst. (1 file per 1 gelembung).
         </span>
       </div>
 
@@ -1186,7 +1207,9 @@
       editModal.classList.remove('open');
     });
 
-    // Photo upload listener for bubbles
+    // Aturan 1 Foto = 1 Gelembung (Tidak Boleh Duplikat)
+    const bubblePhotoKeys = {};
+
     [1, 2, 3, 4, 5, 6].forEach(num => {
       const fileInput = document.getElementById(`fileBubble${num}`);
       const imgElem = document.getElementById(`imgBubble${num}`);
@@ -1194,12 +1217,37 @@
         fileInput.addEventListener('change', (e) => {
           const file = e.target.files[0];
           if (file) {
+            const fileKey = `${file.name}_${file.size}`;
+            
+            // Periksa apakah foto ini sudah dipakai di gelembung lain
+            for (let i = 1; i <= 6; i++) {
+              if (i !== num && bubblePhotoKeys[i] === fileKey) {
+                alert(`⚠️ ATURAN: 1 Foto hanya untuk 1 Gelembung!\nFoto "${file.name}" sudah digunakan di Gelembung ${i}. Silakan pilih foto lain.`);
+                fileInput.value = '';
+                return;
+              }
+            }
+
+            // Simpan identitas foto untuk gelembung ini
+            bubblePhotoKeys[num] = fileKey;
             imgElem.src = URL.createObjectURL(file);
             imgElem.style.display = 'block';
           }
         });
       }
     });
+
+    // Fungsi reset/hapus foto dari gelembung
+    window.removeBubblePhoto = function(num) {
+      const imgElem = document.getElementById(`imgBubble${num}`);
+      const fileInput = document.getElementById(`fileBubble${num}`);
+      if (imgElem) {
+        imgElem.style.display = 'none';
+        imgElem.src = '';
+      }
+      if (fileInput) fileInput.value = '';
+      delete bubblePhotoKeys[num];
+    };
 
     // Button Listeners
     btnStartPause.addEventListener('click', toggleStartPause);
