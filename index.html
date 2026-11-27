@@ -52,51 +52,24 @@
       background: #ff00ff !important;
     }
 
-    /* Top Left Logo Emblem */
-    .top-left-badge {
+    /* Top Left Logo */
+    .top-left-logo-wrapper {
       position: absolute;
-      top: 36px;
-      left: 45px;
-      z-index: 5;
+      top: 32px;
+      left: 42px;
+      z-index: 10;
       display: flex;
       align-items: center;
-      gap: 12px;
+      transition: all 0.3s ease;
+    }
+
+    .church-logo {
+      height: 54px;
+      width: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 12px rgba(170, 220, 255, 0.4));
       opacity: 0.95;
-    }
-
-    .badge-ring {
-      width: 72px;
-      height: 72px;
-      border-radius: 50%;
-      border: 1.5px solid rgba(220, 240, 255, 0.7);
-      background: radial-gradient(circle at 35% 30%, rgba(255,255,255,0.4) 0%, rgba(180,220,255,0.05) 60%, rgba(220,240,255,0.4) 100%);
-      box-shadow: 
-        inset 0 0 10px rgba(255, 255, 255, 0.5),
-        0 4px 15px rgba(0, 0, 0, 0.25);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-    }
-
-    .badge-logo-text {
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      font-weight: 700;
-      font-size: 1.55rem;
-      color: #ffffff;
-      text-shadow: var(--text-shadow-strong);
-      line-height: 1;
-    }
-
-    .badge-sub {
-      font-size: 0.55rem;
-      letter-spacing: 1px;
-      color: #cbe6fa;
-      font-weight: 600;
-      margin-top: 2px;
-      text-transform: uppercase;
+      transition: height 0.2s ease, opacity 0.2s ease;
     }
 
     /* BUBBLES CONTAINER & GLOSSY AESTHETICS */
@@ -672,12 +645,9 @@
 </head>
 <body class="mode-image">
 
-  <!-- Top Left Emblem / Logo (Optional aesthetic) -->
-  <div class="top-left-badge" id="emblemContainer">
-    <div class="badge-ring">
-      <span class="badge-logo-text" id="dispEmblemText">GA</span>
-      <span class="badge-sub" id="dispEmblemSub">A19</span>
-    </div>
+  <!-- Top Left Logo -->
+  <div class="top-left-logo-wrapper" id="logoWrapper">
+    <img src="logo.png" alt="AOG Logo" class="church-logo" id="mainLogo">
   </div>
 
   <!-- Bubbles Layer with Glossy 3D Refractions & Star Twinkles -->
@@ -854,10 +824,16 @@
       </div>
 
       <div class="form-row">
-        <label>Logo Emblem Kiri Atas (Teks & Subteks)</label>
-        <div style="display:flex; gap:8px;">
-          <input type="text" id="inputEditLogo" value="GA" style="width: 50%;">
-          <input type="text" id="inputEditLogoSub" value="A19" style="width: 50%;">
+        <label>Pengaturan Logo Kiri Atas</label>
+        <div style="display:flex; align-items:center; gap:16px;">
+          <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; text-transform:none; font-size:0.85rem; color:#d2ecff;">
+            <input type="checkbox" id="checkShowLogo" checked style="width:auto; cursor:pointer;"> Tampilkan Logo
+          </label>
+          <select id="selectLogoSize" class="select-dropdown" style="padding:4px 8px; font-size:0.8rem;">
+            <option value="42px">Ukuran Kecil (42px)</option>
+            <option value="54px" selected>Ukuran Sedang (54px)</option>
+            <option value="68px">Ukuran Besar (68px)</option>
+          </select>
         </div>
       </div>
 
@@ -896,14 +872,14 @@
     const btnToggleDock = document.getElementById('btnToggleDock');
     const dockTabIcon = document.getElementById('dockTabIcon');
 
-    // Text Display Elements
+    // Text & Logo Display Elements
     const dispHeaderLine1 = document.getElementById('dispHeaderLine1');
     const dispHeaderLine2 = document.getElementById('dispHeaderLine2');
     const dispTitleCaps = document.getElementById('dispTitleCaps');
     const dispTitleScript = document.getElementById('dispTitleScript');
     const dispTitleSerif = document.getElementById('dispTitleSerif');
-    const dispEmblemText = document.getElementById('dispEmblemText');
-    const dispEmblemSub = document.getElementById('dispEmblemSub');
+    const logoWrapper = document.getElementById('logoWrapper');
+    const mainLogo = document.getElementById('mainLogo');
 
     // Modal Elements
     const editModal = document.getElementById('editModal');
@@ -916,8 +892,8 @@
     const inputEditTitleCaps = document.getElementById('inputEditTitleCaps');
     const inputEditTitleScript = document.getElementById('inputEditTitleScript');
     const inputEditTitleSerif = document.getElementById('inputEditTitleSerif');
-    const inputEditLogo = document.getElementById('inputEditLogo');
-    const inputEditLogoSub = document.getElementById('inputEditLogoSub');
+    const checkShowLogo = document.getElementById('checkShowLogo');
+    const selectLogoSize = document.getElementById('selectLogoSize');
 
     // Web Audio Synthesizer (Chime sound for countdown finish)
     const AudioContextClass = window.AudioContext || window.webkitAudioContext;
@@ -1096,8 +1072,8 @@
       inputEditTitleCaps.value = dispTitleCaps.textContent;
       inputEditTitleScript.value = dispTitleScript.textContent;
       inputEditTitleSerif.value = dispTitleSerif.textContent;
-      inputEditLogo.value = dispEmblemText.textContent;
-      inputEditLogoSub.value = dispEmblemSub.textContent;
+      checkShowLogo.checked = logoWrapper.style.display !== 'none';
+      selectLogoSize.value = mainLogo.style.height || '54px';
       editModal.classList.add('open');
     });
 
@@ -1111,8 +1087,8 @@
       dispTitleCaps.textContent = inputEditTitleCaps.value;
       dispTitleScript.textContent = inputEditTitleScript.value;
       dispTitleSerif.textContent = inputEditTitleSerif.value;
-      dispEmblemText.textContent = inputEditLogo.value;
-      dispEmblemSub.textContent = inputEditLogoSub.value;
+      logoWrapper.style.display = checkShowLogo.checked ? 'flex' : 'none';
+      mainLogo.style.height = selectLogoSize.value;
       editModal.classList.remove('open');
     });
 
