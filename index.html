@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aesthetic Countdown - Vibes Theme</title>
+  
+  <!-- Google Fonts: Bebas Neue, Playfair Display Italic, Dancing Script, Montserrat, Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Caveat:wght@600;700&family=Dancing+Script:wght@600;700&family=Montserrat:ital,wght@0,600;0,700;0,800;0,900;1,600&family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700;1,800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --ice-light: #eaf5fc;
+      --ice-blue: #b3d5ee;
+      --ice-cyan: #90c2e7;
+      --text-shadow-strong: 0 4px 10px rgba(0, 0, 0, 0.75), 0 2px 4px rgba(0, 0, 0, 0.9);
+      --glow-subtle: 0 0 16px rgba(160, 215, 255, 0.45);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      font-family: 'Poppins', sans-serif;
+      position: relative;
+    }
+
+    /* Screen Modes */
+    body.mode-image {
+      background-image: url('background.jpg') !important;
+      background-size: cover !important;
+      background-position: center !important;
+      background-repeat: no-repeat !important;
+      background-color: #0d2238;
+    }
+    body.mode-green {
+      background: #00ff00 !important;
+    }
+    body.mode-transparent {
+      background: transparent !important;
+    }
+    body.mode-magenta {
+      background: #ff00ff !important;
+    }
+
+    /* Top Left Logo Emblem */
+    .top-left-badge {
+      position: absolute;
+      top: 36px;
+      left: 45px;
+      z-index: 5;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      opacity: 0.95;
+    }
+
+    .badge-ring {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(220, 240, 255, 0.7);
+      background: radial-gradient(circle at 35% 30%, rgba(255,255,255,0.4) 0%, rgba(180,220,255,0.05) 60%, rgba(220,240,255,0.4) 100%);
+      box-shadow: 
+        inset 0 0 10px rgba(255, 255, 255, 0.5),
+        0 4px 15px rgba(0, 0, 0, 0.25);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .badge-logo-text {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-weight: 700;
+      font-size: 1.55rem;
+      color: #ffffff;
+      text-shadow: var(--text-shadow-strong);
+      line-height: 1;
+    }
+
+    .badge-sub {
+      font-size: 0.55rem;
+      letter-spacing: 1px;
+      color: #cbe6fa;
+      font-weight: 600;
+      margin-top: 2px;
+      text-transform: uppercase;
+    }
+
+    /* BUBBLES CONTAINER & GLOSSY AESTHETICS */
+    .bubbles-layer {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .glass-bubble {
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(circle at 32% 28%, 
+        rgba(255, 255, 255, 0.65) 0%, 
+        rgba(255, 255, 255, 0.15) 30%, 
+        rgba(150, 210, 255, 0.05) 60%, 
+        rgba(180, 225, 255, 0.3) 90%, 
+        rgba(255, 255, 255, 0.7) 100%);
+      box-shadow: 
+        inset 0 0 16px rgba(255, 255, 255, 0.5),
+        inset 6px 6px 14px rgba(255, 255, 255, 0.6),
+        inset -6px -6px 14px rgba(100, 175, 240, 0.4),
+        0 8px 24px rgba(0, 0, 0, 0.25);
+      border: 1.5px solid rgba(255, 255, 255, 0.55);
+      animation: floatMotion ease-in-out infinite alternate;
+    }
+
+    /* Bubble crescent highlight */
+    .glass-bubble::before {
+      content: '';
+      position: absolute;
+      top: 14%;
+      left: 18%;
+      width: 26%;
+      height: 18%;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.15) 80%);
+      transform: rotate(-35deg);
+    }
+
+    /* Sparkle Star SVG element on bubbles */
+    .bubble-star {
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      pointer-events: none;
+      filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.9));
+    }
+
+    /* Bubble placement matching reference composition */
+    .bubble-lg-bottom-left {
+      width: 220px;
+      height: 220px;
+      bottom: 8%;
+      left: 3%;
+      animation-duration: 7s;
+    }
+    .bubble-lg-bottom-left .bubble-star {
+      bottom: 22%;
+      left: 4%;
+    }
+
+    .bubble-top-left {
+      width: 130px;
+      height: 130px;
+      top: 3%;
+      left: 7%;
+      animation-duration: 6s;
+      animation-delay: -1s;
+    }
+    .bubble-top-left .bubble-star {
+      top: 25%;
+      right: 10%;
+    }
+
+    .bubble-mid-left {
+      width: 85px;
+      height: 85px;
+      top: 19%;
+      left: 24%;
+      animation-duration: 5s;
+      animation-delay: -2s;
+    }
+
+    .bubble-mid-right {
+      width: 165px;
+      height: 165px;
+      top: 36%;
+      right: 14%;
+      animation-duration: 7.5s;
+      animation-delay: -3s;
+    }
+
+    .bubble-top-right {
+      width: 95px;
+      height: 95px;
+      top: 12%;
+      right: 9%;
+      animation-duration: 6.2s;
+      animation-delay: -1.5s;
+    }
+
+    .bubble-giant-bottom-right {
+      width: 310px;
+      height: 310px;
+      bottom: -60px;
+      right: -30px;
+      animation-duration: 9s;
+    }
+
+    @keyframes floatMotion {
+      0% {
+        transform: translateY(0px) rotate(0deg);
+      }
+      100% {
+        transform: translateY(-20px) rotate(4deg);
+      }
+    }
+
+    /* MAIN STAGE (Center content) */
+    .main-stage {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding-bottom: 95px; /* Leave space for bottom control bar */
+      text-align: center;
+    }
+
+    /* TOP HEADER: Connecting Time / Coach Lea */
+    .header-group {
+      margin-bottom: 18px;
+    }
+
+    .header-line1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2.1rem;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: 0.5px;
+      line-height: 1.2;
+      text-shadow: var(--text-shadow-strong);
+    }
+
+    .header-line2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.85rem;
+      font-weight: 700;
+      color: #e5f2fc;
+      letter-spacing: 0.5px;
+      line-height: 1.25;
+      text-shadow: var(--text-shadow-strong);
+    }
+
+    /* MAIN TITLE VIBES (Exact matching styles) */
+    .title-art-block {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      margin-bottom: 16px;
+    }
+
+    /* Row 1: THE MARKS + of an */
+    .title-row-top {
+      position: relative;
+      display: inline-flex;
+      align-items: baseline;
+    }
+
+    .text-caps-condensed {
+      font-family: 'Bebas Neue', 'Montserrat', sans-serif;
+      font-size: 6.4rem;
+      letter-spacing: 4px;
+      color: #c9e3f7;
+      line-height: 0.9;
+      text-transform: uppercase;
+      text-shadow: 
+        0 4px 8px rgba(0, 0, 0, 0.8),
+        0 0 20px rgba(160, 220, 255, 0.4);
+    }
+
+    /* "of an" cursive overlay */
+    .text-script-middle {
+      position: absolute;
+      right: -85px;
+      top: 55%;
+      transform: translateY(-25%) rotate(-3deg);
+      font-family: 'Caveat', 'Dancing Script', cursive;
+      font-size: 3.8rem;
+      font-weight: 700;
+      color: #e0f2ff;
+      text-shadow: 
+        0 3px 6px rgba(0, 0, 0, 0.9),
+        0 0 12px rgba(180, 230, 255, 0.6);
+      pointer-events: none;
+      white-space: nowrap;
+    }
+
+    /* Row 2: Army God (High contrast italic serif) */
+    .text-serif-italic {
+      font-family: 'Playfair Display', serif;
+      font-size: 6.2rem;
+      font-style: italic;
+      font-weight: 700;
+      line-height: 0.96;
+      color: #bbddf4;
+      letter-spacing: 1.5px;
+      text-shadow: 
+        0 4px 10px rgba(0, 0, 0, 0.85),
+        0 0 24px rgba(150, 215, 255, 0.45);
+    }
+
+    /* COUNTDOWN TIMER BOX */
+    .countdown-section {
+      margin-top: 18px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .timer-glass-card {
+      display: flex;
+      align-items: baseline;
+      justify-content: center;
+      gap: 16px;
+      padding: 8px 46px;
+      border-radius: 26px;
+      background: rgba(8, 24, 46, 0.55);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1.5px solid rgba(200, 235, 255, 0.4);
+      box-shadow: 
+        0 12px 36px rgba(0, 0, 0, 0.4),
+        inset 0 1px 3px rgba(255, 255, 255, 0.4),
+        0 0 30px rgba(130, 205, 255, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .timer-glass-card.warning-flash {
+      border-color: rgba(255, 75, 75, 0.85);
+      background: rgba(50, 10, 10, 0.65);
+      box-shadow: 0 0 40px rgba(255, 60, 60, 0.5);
+      animation: alertPulse 1s infinite alternate;
+    }
+
+    @keyframes alertPulse {
+      from { transform: scale(1); }
+      to { transform: scale(1.03); }
+    }
+
+    .digits {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 7.6rem;
+      line-height: 0.88;
+      letter-spacing: 5px;
+      color: #ffffff;
+      text-shadow: 
+        0 3px 8px rgba(0, 0, 0, 0.9),
+        0 0 28px rgba(175, 225, 255, 0.8);
+    }
+
+    .sep {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 6.4rem;
+      line-height: 0.88;
+      color: #9cd7fc;
+      text-shadow: 0 0 20px rgba(150, 220, 255, 0.85);
+      animation: colonBlink 1s step-end infinite;
+    }
+
+    .sep.paused {
+      animation: none;
+      opacity: 0.85;
+    }
+
+    @keyframes colonBlink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.2; }
+    }
+
+    .status-pill {
+      margin-top: 12px;
+      font-size: 0.92rem;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #d2ecff;
+      background: rgba(3, 15, 30, 0.6);
+      padding: 5px 22px;
+      border-radius: 20px;
+      border: 1px solid rgba(160, 215, 255, 0.3);
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+    }
+
+    /* BOTTOM CONTROLS DOCK (DAPAT DIATUR DARI BAGIAN BAWAH) */
+    .controls-dock {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: linear-gradient(to top, rgba(3, 9, 18, 0.98) 0%, rgba(6, 17, 34, 0.92) 80%, rgba(6, 17, 34, 0) 100%);
+      padding: 16px 24px 14px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.35s;
+    }
+
+    .controls-dock.collapsed {
+      transform: translateY(calc(100% - 24px));
+      opacity: 0.35;
+    }
+
+    .controls-dock.collapsed:hover {
+      opacity: 0.95;
+    }
+
+    /* Tab button to collapse/expand dock */
+    .dock-tab {
+      position: absolute;
+      top: -28px;
+      background: #0d2238;
+      color: #a4d4f8;
+      border: 1px solid rgba(160, 215, 255, 0.35);
+      border-bottom: none;
+      padding: 4px 24px;
+      border-radius: 12px 12px 0 0;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.35);
+      transition: all 0.2s;
+    }
+
+    .dock-tab:hover {
+      background: #173d66;
+      color: #ffffff;
+    }
+
+    .controls-grid {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      max-width: 1300px;
+    }
+
+    .control-cluster {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      padding: 6px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .cluster-title {
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: #a4ceef;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .time-input {
+      width: 58px;
+      padding: 5px 6px;
+      background: rgba(0, 0, 0, 0.65);
+      border: 1px solid rgba(140, 205, 255, 0.4);
+      color: #ffffff;
+      font-size: 1.05rem;
+      font-weight: 700;
+      text-align: center;
+      border-radius: 8px;
+      font-family: inherit;
+      outline: none;
+    }
+
+    .time-input:focus {
+      border-color: #55b0ff;
+      box-shadow: 0 0 10px rgba(85, 176, 255, 0.6);
+    }
+
+    /* Buttons */
+    .btn {
+      padding: 8px 16px;
+      border-radius: 10px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      border: 1px solid transparent;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.18s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .btn:active {
+      transform: scale(0.96);
+    }
+
+    .btn-green-start {
+      background: linear-gradient(135deg, #1aa34a, #0e7030);
+      color: white;
+      border-color: #44dd78;
+      box-shadow: 0 4px 14px rgba(22, 140, 60, 0.4);
+    }
+    .btn-green-start:hover {
+      background: linear-gradient(135deg, #22ba54, #128038);
+      box-shadow: 0 4px 18px rgba(34, 186, 84, 0.6);
+    }
+
+    .btn-amber-pause {
+      background: linear-gradient(135deg, #d98218, #995707);
+      color: white;
+      border-color: #fab453;
+      box-shadow: 0 4px 14px rgba(217, 130, 24, 0.4);
+    }
+    .btn-amber-pause:hover {
+      background: linear-gradient(135deg, #eb901c, #b36608);
+      box-shadow: 0 4px 18px rgba(235, 144, 28, 0.6);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.1);
+      color: #d5e9fa;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.2);
+      color: #ffffff;
+    }
+
+    .btn-preset {
+      padding: 5px 10px;
+      font-size: 0.78rem;
+      background: rgba(25, 75, 135, 0.38);
+      border: 1px solid rgba(135, 195, 255, 0.35);
+      color: #bee2fd;
+      border-radius: 8px;
+    }
+    .btn-preset:hover {
+      background: rgba(35, 110, 195, 0.7);
+      color: #ffffff;
+      border-color: #72baff;
+    }
+
+    .select-dropdown {
+      padding: 6px 12px;
+      background: rgba(8, 22, 42, 0.9);
+      border: 1px solid rgba(140, 205, 255, 0.4);
+      color: #d6e9f8;
+      font-size: 0.82rem;
+      font-weight: 600;
+      border-radius: 8px;
+      outline: none;
+      font-family: inherit;
+      cursor: pointer;
+    }
+    .select-dropdown:focus {
+      border-color: #55b0ff;
+    }
+
+    .keyboard-guide {
+      font-size: 0.72rem;
+      color: #8bb1d0;
+      margin-top: 6px;
+    }
+
+    /* Modal for Editing Texts */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      z-index: 250;
+      justify-content: center;
+      align-items: center;
+      backdrop-filter: blur(6px);
+    }
+    .modal-overlay.open {
+      display: flex;
+    }
+
+    .modal-box {
+      background: #0d1e34;
+      border: 1px solid rgba(160, 215, 255, 0.35);
+      padding: 26px;
+      border-radius: 18px;
+      width: 490px;
+      max-width: 92vw;
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.7);
+      color: white;
+    }
+
+    .modal-box h3 {
+      font-size: 1.25rem;
+      margin-bottom: 16px;
+      color: #aadbff;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 8px;
+    }
+
+    .form-row {
+      margin-bottom: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      text-align: left;
+    }
+
+    .form-row label {
+      font-size: 0.78rem;
+      color: #9ec2e0;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .form-row input {
+      padding: 9px 12px;
+      background: #06111f;
+      border: 1px solid #254d78;
+      border-radius: 8px;
+      color: white;
+      font-size: 0.95rem;
+      outline: none;
+      font-family: inherit;
+    }
+
+    .form-row input:focus {
+      border-color: #4da3f8;
+    }
+
+    .modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    /* Responsive scaling for lower resolutions or screens */
+    @media (max-height: 820px) {
+      .text-caps-condensed { font-size: 5rem; }
+      .text-serif-italic { font-size: 4.8rem; }
+      .text-script-middle { font-size: 3.2rem; right: -70px; }
+      .digits { font-size: 6.2rem; }
+      .sep { font-size: 5.2rem; }
+      .header-line1 { font-size: 1.7rem; }
+      .header-line2 { font-size: 1.45rem; }
+      .main-stage { padding-bottom: 80px; }
+    }
+  </style>
+</head>
+<body class="mode-image">
+
+  <!-- Top Left Emblem / Logo (Optional aesthetic) -->
+  <div class="top-left-badge" id="emblemContainer">
+    <div class="badge-ring">
+      <span class="badge-logo-text" id="dispEmblemText">GA</span>
+      <span class="badge-sub" id="dispEmblemSub">A19</span>
+    </div>
+  </div>
+
+  <!-- Bubbles Layer with Glossy 3D Refractions & Star Twinkles -->
+  <div class="bubbles-layer" id="bubblesContainer">
+    
+    <!-- Bubble 1: Large Bottom Left -->
+    <div class="glass-bubble bubble-lg-bottom-left">
+      <svg class="bubble-star" viewBox="0 0 24 24">
+        <path d="M12 0 L14 9 L24 12 L14 15 L12 24 L10 15 L0 12 L10 9 Z" fill="#ffffff" />
+      </svg>
+    </div>
+
+    <!-- Bubble 2: Top Left -->
+    <div class="glass-bubble bubble-top-left">
+      <svg class="bubble-star" viewBox="0 0 24 24">
+        <path d="M12 0 L14 9 L24 12 L14 15 L12 24 L10 9 L0 12 L10 9 Z" fill="#ffffff" />
+      </svg>
+    </div>
+
+    <!-- Bubble 3: Mid Left -->
+    <div class="glass-bubble bubble-mid-left"></div>
+
+    <!-- Bubble 4: Mid Right with highlight -->
+    <div class="glass-bubble bubble-mid-right">
+      <svg class="bubble-star" style="top: 15%; right: 18%;" viewBox="0 0 24 24">
+        <path d="M12 0 L14 9 L24 12 L14 15 L12 24 L10 15 L0 12 L10 9 Z" fill="#ffffff" />
+      </svg>
+    </div>
+
+    <!-- Bubble 5: Top Right -->
+    <div class="glass-bubble bubble-top-right">
+      <svg class="bubble-star" style="bottom: 15%; left: 15%; width: 18px; height: 18px;" viewBox="0 0 24 24">
+        <path d="M12 0 L14 9 L24 12 L14 15 L12 24 L10 15 L0 12 L10 9 Z" fill="#ffffff" />
+      </svg>
+    </div>
+
+    <!-- Bubble 6: Giant Bottom Right -->
+    <div class="glass-bubble bubble-giant-bottom-right"></div>
+  </div>
+
+  <!-- Main Stage Area -->
+  <div class="main-stage">
+    
+    <!-- Header: Connecting Time / Coach Lea -->
+    <div class="header-group">
+      <div class="header-line1" id="dispHeaderLine1">Connecting Time</div>
+      <div class="header-line2" id="dispHeaderLine2">Coach Lea</div>
+    </div>
+
+    <!-- Main Title Typography -->
+    <div class="title-art-block">
+      <div class="title-row-top">
+        <span class="text-caps-condensed" id="dispTitleCaps">THE MARKS</span>
+        <span class="text-script-middle" id="dispTitleScript">of an</span>
+      </div>
+      <div class="text-serif-italic" id="dispTitleSerif">Army God</div>
+    </div>
+
+    <!-- Countdown Timer -->
+    <div class="countdown-section">
+      <div class="timer-glass-card" id="timerBox">
+        <span class="digits" id="dispMin">05</span>
+        <span class="sep" id="dispColon">:</span>
+        <span class="digits" id="dispSec">00</span>
+      </div>
+      <div class="status-pill" id="dispStatus">SIAP / READY</div>
+    </div>
+
+  </div>
+
+  <!-- Bottom Control Dock (DAPAT DIATUR DARI BAGIAN BAWAH) -->
+  <div class="controls-dock" id="controlsDock">
+    
+    <!-- Expand / Collapse Tab -->
+    <button class="dock-tab" id="btnToggleDock" title="Klik atau tekan 'H' untuk menyembunyikan / menampilkan panel kontrol">
+      <span id="dockTabIcon">▼</span> PANEL KONTROL COUNTDOWN (H)
+    </button>
+
+    <div class="controls-grid">
+      
+      <!-- Start / Pause & Reset -->
+      <button class="btn btn-green-start" id="btnStartPause">
+        ▶ MULAI
+      </button>
+      
+      <button class="btn btn-secondary" id="btnReset">
+        ↺ RESET
+      </button>
+
+      <!-- Time Input -->
+      <div class="control-cluster">
+        <span class="cluster-title">Atur Waktu:</span>
+        <input type="number" id="inputMinutes" class="time-input" min="0" max="999" value="5" title="Menit">
+        <span style="color:#8bb1d0; font-weight:700;">:</span>
+        <input type="number" id="inputSeconds" class="time-input" min="0" max="59" value="0" title="Detik">
+        <button class="btn btn-secondary" id="btnApplyTime" style="padding: 5px 10px; font-size: 0.78rem;">
+          TERAPKAN
+        </button>
+      </div>
+
+      <!-- Presets -->
+      <div class="control-cluster" style="gap: 5px;">
+        <span class="cluster-title">Preset:</span>
+        <button class="btn btn-preset" onclick="setPreset(1, 0)">1M</button>
+        <button class="btn btn-preset" onclick="setPreset(3, 0)">3M</button>
+        <button class="btn btn-preset" onclick="setPreset(5, 0)">5M</button>
+        <button class="btn btn-preset" onclick="setPreset(10, 0)">10M</button>
+        <button class="btn btn-preset" onclick="setPreset(15, 0)">15M</button>
+        <button class="btn btn-preset" onclick="adjustTime(60)">+1M</button>
+        <button class="btn btn-preset" onclick="adjustTime(30)">+30S</button>
+        <button class="btn btn-preset" onclick="adjustTime(-30)">-30S</button>
+      </div>
+
+      <!-- Background Selector -->
+      <div class="control-cluster">
+        <span class="cluster-title">Background:</span>
+        <select id="bgSelect" class="select-dropdown">
+          <option value="image" selected>🖼️ Background Grid Gambar (Default)</option>
+          <option value="green">🟩 Green Screen (#00FF00)</option>
+          <option value="transparent">⬛ Transparent (OBS Browser)</option>
+          <option value="magenta">🟪 Magenta Screen</option>
+        </select>
+      </div>
+
+      <!-- Sound & Edit Text -->
+      <button class="btn btn-secondary" id="btnSoundToggle" title="Aktif/Nonaktifkan Bel Selesai">
+        🔔 NADA: ON
+      </button>
+
+      <button class="btn btn-secondary" id="btnOpenModal" title="Ubah Nama Acara, Pembicara, atau Judul">
+        ✏️ EDIT TEKS
+      </button>
+
+      <button class="btn btn-secondary" id="btnFullscreen" title="Layar Penuh (F)">
+        ⛶ FULLSCREEN
+      </button>
+
+    </div>
+
+    <div class="keyboard-guide">
+      <b>Shortcut Keyboard:</b> Spasi = Mulai/Jeda &nbsp;|&nbsp; R = Reset &nbsp;|&nbsp; H = Sembunyikan Panel &nbsp;|&nbsp; F = Fullscreen
+    </div>
+
+  </div>
+
+  <!-- Text Customization Modal -->
+  <div class="modal-overlay" id="editModal">
+    <div class="modal-box">
+      <h3>Edit Teks Countdown & Judul</h3>
+
+      <div class="form-row">
+        <label>Header Baris 1 (Misal: Connecting Time / Ibadah Raya)</label>
+        <input type="text" id="inputEditHeader1" value="Connecting Time">
+      </div>
+
+      <div class="form-row">
+        <label>Header Baris 2 (Misal: Coach Lea / Pembicara)</label>
+        <input type="text" id="inputEditHeader2" value="Coach Lea">
+      </div>
+
+      <div class="form-row">
+        <label>Judul Utama (Teks Besar Atas)</label>
+        <input type="text" id="inputEditTitleCaps" value="THE MARKS">
+      </div>
+
+      <div class="form-row">
+        <label>Teks Sambung Tengah (Cursive / Script)</label>
+        <input type="text" id="inputEditTitleScript" value="of an">
+      </div>
+
+      <div class="form-row">
+        <label>Judul Utama (Teks Serif Italic Bawah)</label>
+        <input type="text" id="inputEditTitleSerif" value="Army God">
+      </div>
+
+      <div class="form-row">
+        <label>Logo Emblem Kiri Atas (Teks & Subteks)</label>
+        <div style="display:flex; gap:8px;">
+          <input type="text" id="inputEditLogo" value="GA" style="width: 50%;">
+          <input type="text" id="inputEditLogoSub" value="A19" style="width: 50%;">
+        </div>
+      </div>
+
+      <div class="modal-actions">
+        <button class="btn btn-secondary" id="btnCancelModal">Batal</button>
+        <button class="btn btn-green-start" id="btnSaveModal">Simpan Perubahan</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // State
+    let totalSeconds = 5 * 60;
+    let initialSeconds = 5 * 60;
+    let timerId = null;
+    let isRunning = false;
+    let soundEnabled = true;
+
+    // Elements
+    const dispMin = document.getElementById('dispMin');
+    const dispSec = document.getElementById('dispSec');
+    const dispColon = document.getElementById('dispColon');
+    const dispStatus = document.getElementById('dispStatus');
+    const timerBox = document.getElementById('timerBox');
+
+    const inputMinutes = document.getElementById('inputMinutes');
+    const inputSeconds = document.getElementById('inputSeconds');
+    const btnStartPause = document.getElementById('btnStartPause');
+    const btnReset = document.getElementById('btnReset');
+    const btnApplyTime = document.getElementById('btnApplyTime');
+    const bgSelect = document.getElementById('bgSelect');
+    const btnSoundToggle = document.getElementById('btnSoundToggle');
+    const btnFullscreen = document.getElementById('btnFullscreen');
+
+    const controlsDock = document.getElementById('controlsDock');
+    const btnToggleDock = document.getElementById('btnToggleDock');
+    const dockTabIcon = document.getElementById('dockTabIcon');
+
+    // Text Display Elements
+    const dispHeaderLine1 = document.getElementById('dispHeaderLine1');
+    const dispHeaderLine2 = document.getElementById('dispHeaderLine2');
+    const dispTitleCaps = document.getElementById('dispTitleCaps');
+    const dispTitleScript = document.getElementById('dispTitleScript');
+    const dispTitleSerif = document.getElementById('dispTitleSerif');
+    const dispEmblemText = document.getElementById('dispEmblemText');
+    const dispEmblemSub = document.getElementById('dispEmblemSub');
+
+    // Modal Elements
+    const editModal = document.getElementById('editModal');
+    const btnOpenModal = document.getElementById('btnOpenModal');
+    const btnCancelModal = document.getElementById('btnCancelModal');
+    const btnSaveModal = document.getElementById('btnSaveModal');
+
+    const inputEditHeader1 = document.getElementById('inputEditHeader1');
+    const inputEditHeader2 = document.getElementById('inputEditHeader2');
+    const inputEditTitleCaps = document.getElementById('inputEditTitleCaps');
+    const inputEditTitleScript = document.getElementById('inputEditTitleScript');
+    const inputEditTitleSerif = document.getElementById('inputEditTitleSerif');
+    const inputEditLogo = document.getElementById('inputEditLogo');
+    const inputEditLogoSub = document.getElementById('inputEditLogoSub');
+
+    // Web Audio Synthesizer (Chime sound for countdown finish)
+    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+    let audioCtx = null;
+
+    function getAudioContext() {
+      if (!audioCtx) {
+        audioCtx = new AudioContextClass();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      return audioCtx;
+    }
+
+    function playBellChime() {
+      if (!soundEnabled) return;
+      const ctx = getAudioContext();
+      const chimeNotes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
+      chimeNotes.forEach((freq, i) => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, ctx.currentTime + i * 0.16);
+
+        gain.gain.setValueAtTime(0, ctx.currentTime + i * 0.16);
+        gain.gain.linearRampToValueAtTime(0.28, ctx.currentTime + i * 0.16 + 0.04);
+        gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + i * 0.16 + 2.0);
+
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+
+        osc.start(ctx.currentTime + i * 0.16);
+        osc.stop(ctx.currentTime + i * 0.16 + 2.1);
+      });
+    }
+
+    // Render Time
+    function render() {
+      const m = Math.floor(totalSeconds / 60);
+      const s = totalSeconds % 60;
+      dispMin.textContent = String(m).padStart(2, '0');
+      dispSec.textContent = String(s).padStart(2, '0');
+
+      if (isRunning && totalSeconds > 0 && totalSeconds <= 30) {
+        timerBox.classList.add('warning-flash');
+      } else {
+        timerBox.classList.remove('warning-flash');
+      }
+    }
+
+    // Tick
+    function tick() {
+      if (totalSeconds > 0) {
+        totalSeconds--;
+        render();
+        if (totalSeconds === 0) {
+          onFinish();
+        }
+      }
+    }
+
+    // Start / Pause
+    function toggleStartPause() {
+      getAudioContext();
+
+      if (isRunning) {
+        // Jeda / Pause
+        clearInterval(timerId);
+        timerId = null;
+        isRunning = false;
+        btnStartPause.innerHTML = '▶ LANJUTKAN';
+        btnStartPause.className = 'btn btn-green-start';
+        dispStatus.textContent = 'DIJEDA / PAUSED';
+        dispColon.classList.add('paused');
+      } else {
+        // Mulai / Start
+        if (totalSeconds <= 0) {
+          totalSeconds = initialSeconds > 0 ? initialSeconds : 5 * 60;
+          render();
+        }
+        timerId = setInterval(tick, 1000);
+        isRunning = true;
+        btnStartPause.innerHTML = '⏸ JEDA';
+        btnStartPause.className = 'btn btn-amber-pause';
+        dispStatus.textContent = 'BERLANGSUNG / LIVE';
+        dispColon.classList.remove('paused');
+      }
+    }
+
+    // Reset
+    function reset() {
+      clearInterval(timerId);
+      timerId = null;
+      isRunning = false;
+      totalSeconds = initialSeconds;
+      render();
+      btnStartPause.innerHTML = '▶ MULAI';
+      btnStartPause.className = 'btn btn-green-start';
+      dispStatus.textContent = 'SIAP / READY';
+      dispColon.classList.add('paused');
+      timerBox.classList.remove('warning-flash');
+    }
+
+    // On Finish
+    function onFinish() {
+      clearInterval(timerId);
+      timerId = null;
+      isRunning = false;
+      btnStartPause.innerHTML = '▶ MULAI';
+      btnStartPause.className = 'btn btn-green-start';
+      dispStatus.textContent = 'WAKTU SELESAI / FINISHED';
+      dispColon.classList.remove('paused');
+      timerBox.classList.add('warning-flash');
+      playBellChime();
+    }
+
+    // Apply manual time
+    function applyInputTime() {
+      const m = parseInt(inputMinutes.value, 10) || 0;
+      const s = parseInt(inputSeconds.value, 10) || 0;
+      initialSeconds = Math.max(0, m * 60 + s);
+      totalSeconds = initialSeconds;
+      reset();
+    }
+
+    // Preset helper
+    window.setPreset = function(m, s) {
+      inputMinutes.value = m;
+      inputSeconds.value = s;
+      initialSeconds = m * 60 + s;
+      totalSeconds = initialSeconds;
+      reset();
+    };
+
+    // Quick adjust
+    window.adjustTime = function(delta) {
+      totalSeconds = Math.max(0, totalSeconds + delta);
+      initialSeconds = Math.max(initialSeconds, totalSeconds);
+      render();
+    };
+
+    // Background switch
+    bgSelect.addEventListener('change', (e) => {
+      document.body.className = 'mode-' + e.target.value;
+    });
+
+    // Toggle Dock Visibility
+    function toggleDock() {
+      controlsDock.classList.toggle('collapsed');
+      const isCollapsed = controlsDock.classList.contains('collapsed');
+      dockTabIcon.textContent = isCollapsed ? '▲' : '▼';
+    }
+
+    btnToggleDock.addEventListener('click', toggleDock);
+
+    // Toggle sound
+    btnSoundToggle.addEventListener('click', () => {
+      soundEnabled = !soundEnabled;
+      btnSoundToggle.textContent = soundEnabled ? '🔔 NADA: ON' : '🔕 NADA: OFF';
+    });
+
+    // Fullscreen
+    btnFullscreen.addEventListener('click', () => {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(() => {});
+      } else {
+        document.exitFullscreen().catch(() => {});
+      }
+    });
+
+    // Edit Modal Open & Save
+    btnOpenModal.addEventListener('click', () => {
+      inputEditHeader1.value = dispHeaderLine1.textContent;
+      inputEditHeader2.value = dispHeaderLine2.textContent;
+      inputEditTitleCaps.value = dispTitleCaps.textContent;
+      inputEditTitleScript.value = dispTitleScript.textContent;
+      inputEditTitleSerif.value = dispTitleSerif.textContent;
+      inputEditLogo.value = dispEmblemText.textContent;
+      inputEditLogoSub.value = dispEmblemSub.textContent;
+      editModal.classList.add('open');
+    });
+
+    btnCancelModal.addEventListener('click', () => {
+      editModal.classList.remove('open');
+    });
+
+    btnSaveModal.addEventListener('click', () => {
+      dispHeaderLine1.textContent = inputEditHeader1.value;
+      dispHeaderLine2.textContent = inputEditHeader2.value;
+      dispTitleCaps.textContent = inputEditTitleCaps.value;
+      dispTitleScript.textContent = inputEditTitleScript.value;
+      dispTitleSerif.textContent = inputEditTitleSerif.value;
+      dispEmblemText.textContent = inputEditLogo.value;
+      dispEmblemSub.textContent = inputEditLogoSub.value;
+      editModal.classList.remove('open');
+    });
+
+    // Button Listeners
+    btnStartPause.addEventListener('click', toggleStartPause);
+    btnReset.addEventListener('click', reset);
+    btnApplyTime.addEventListener('click', applyInputTime);
+
+    // Hotkeys
+    window.addEventListener('keydown', (e) => {
+      if (['INPUT', 'SELECT', 'TEXTAREA'].includes(document.activeElement.tagName)) {
+        return;
+      }
+      if (e.code === 'Space') {
+        e.preventDefault();
+        toggleStartPause();
+      } else if (e.code === 'KeyR') {
+        reset();
+      } else if (e.code === 'KeyH') {
+        toggleDock();
+      } else if (e.code === 'KeyF') {
+        if (!document.fullscreenElement) {
+          document.documentElement.requestFullscreen().catch(() => {});
+        } else {
+          document.exitFullscreen().catch(() => {});
+        }
+      }
+    });
+
+    // Initial State
+    render();
+    dispColon.classList.add('paused');
+  </script>
+</body>
+</html>
