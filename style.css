@@ -59,7 +59,7 @@
       transition: height 0.2s ease, opacity 0.2s ease;
     }
 
-    /* BUBBLES CONTAINER & GLOSSY AESTHETICS */
+    /* BUBBLES CONTAINER & HYPER-REALISTIC GLASS OPTICS */
     .bubbles-layer {
       position: absolute;
       inset: 0;
@@ -73,15 +73,18 @@
       border-radius: 50%;
       overflow: hidden;
       box-shadow: 
-        inset 0 0 16px rgba(255, 255, 255, 0.5),
-        inset 6px 6px 14px rgba(255, 255, 255, 0.6),
-        inset -6px -6px 14px rgba(100, 175, 240, 0.4),
-        0 8px 24px rgba(0, 0, 0, 0.35);
-      border: 1.5px solid rgba(255, 255, 255, 0.65);
-      animation: floatMotion ease-in-out infinite alternate;
+        inset 0 0 20px rgba(255, 255, 255, 0.65),
+        inset 6px 6px 16px rgba(255, 255, 255, 0.75),
+        inset -6px -6px 16px rgba(100, 185, 245, 0.45),
+        inset 0 -8px 14px rgba(255, 170, 225, 0.22),
+        inset -8px 0 14px rgba(130, 245, 230, 0.22),
+        0 10px 30px rgba(0, 0, 0, 0.38),
+        0 0 20px rgba(160, 220, 255, 0.3);
+      border: 1.5px solid rgba(255, 255, 255, 0.75);
+      animation: floatMotion ease-in-out infinite alternate, bubbleBreathing 5s ease-in-out infinite alternate;
     }
 
-    /* Photo inside bubble */
+    /* Photo inside bubble with convex vignette refraction */
     .bubble-photo-img {
       position: absolute;
       inset: 0;
@@ -92,10 +95,11 @@
       border-radius: 50%;
       z-index: 1;
       display: block;
+      filter: contrast(1.04) brightness(1.02);
       transition: transform 0.3s ease;
     }
 
-    /* Glossy 3D glass reflection over photo/bubble */
+    /* Realistic 3D glass gloss & Fresnel highlights */
     .bubble-gloss {
       position: absolute;
       inset: 0;
@@ -103,37 +107,79 @@
       z-index: 2;
       pointer-events: none;
       background: radial-gradient(circle at 32% 28%, 
-        rgba(255, 255, 255, 0.55) 0%, 
-        rgba(255, 255, 255, 0.12) 32%, 
-        rgba(150, 210, 255, 0.04) 60%, 
-        rgba(180, 225, 255, 0.28) 90%, 
-        rgba(255, 255, 255, 0.65) 100%);
+        rgba(255, 255, 255, 0.65) 0%, 
+        rgba(255, 255, 255, 0.15) 28%, 
+        rgba(150, 215, 255, 0.02) 58%, 
+        rgba(180, 230, 255, 0.25) 88%, 
+        rgba(255, 255, 255, 0.6) 100%);
       box-shadow: 
-        inset 0 0 14px rgba(255, 255, 255, 0.45),
-        inset 5px 5px 12px rgba(255, 255, 255, 0.55),
-        inset -5px -5px 12px rgba(100, 175, 240, 0.35);
+        inset 0 0 16px rgba(255, 255, 255, 0.55),
+        inset 5px 5px 14px rgba(255, 255, 255, 0.7),
+        inset -5px -5px 14px rgba(90, 175, 245, 0.4);
     }
 
+    /* Primary curved specular light crescent */
     .bubble-gloss::before {
       content: '';
       position: absolute;
-      top: 14%;
-      left: 18%;
-      width: 26%;
-      height: 18%;
+      top: 13%;
+      left: 17%;
+      width: 28%;
+      height: 20%;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.15) 80%);
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.3) 65%, transparent 100%);
       transform: rotate(-35deg);
+      filter: blur(0.5px);
     }
 
-    /* Sparkle Star SVG element on bubbles */
+    /* Secondary ambient bounce light (bottom right reflection) */
+    .bubble-gloss::after {
+      content: '';
+      position: absolute;
+      bottom: 12%;
+      right: 18%;
+      width: 24%;
+      height: 14%;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(200, 235, 255, 0.45) 0%, transparent 80%);
+      transform: rotate(25deg);
+    }
+
+    /* Sparkle Star SVG with subtle glint flare */
     .bubble-star {
       position: absolute;
       width: 24px;
       height: 24px;
       pointer-events: none;
       z-index: 3;
-      filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.9));
+      filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.95)) drop-shadow(0 0 16px rgba(160, 220, 255, 0.8));
+      animation: starTwinkle 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes starTwinkle {
+      0% { opacity: 0.75; transform: scale(0.9) rotate(0deg); }
+      50% { opacity: 1; transform: scale(1.15) rotate(8deg); }
+      100% { opacity: 0.75; transform: scale(0.9) rotate(0deg); }
+    }
+
+    /* Natural liquid bubble breathing (buoyancy deformation) */
+    @keyframes bubbleBreathing {
+      0% {
+        border-radius: 50% 50% 50% 50%;
+        transform: scale(1, 1);
+      }
+      33% {
+        border-radius: 51% 49% 50% 50% / 49% 51% 50% 50%;
+        transform: scale(1.018, 0.982);
+      }
+      66% {
+        border-radius: 49% 51% 51% 49% / 51% 49% 50% 50%;
+        transform: scale(0.985, 1.015);
+      }
+      100% {
+        border-radius: 50% 50% 50% 50%;
+        transform: scale(1, 1);
+      }
     }
 
     /* Bubble placement matching reference composition */
@@ -240,28 +286,32 @@
       border-radius: 50%;
       overflow: hidden;
       box-shadow: 
-        inset 0 0 16px rgba(255, 255, 255, 0.55),
-        inset 5px 5px 12px rgba(255, 255, 255, 0.65),
-        inset -5px -5px 12px rgba(100, 175, 240, 0.4),
-        0 8px 28px rgba(0, 0, 0, 0.35);
-      border: 1.5px solid rgba(255, 255, 255, 0.7);
+        inset 0 0 20px rgba(255, 255, 255, 0.65),
+        inset 6px 6px 16px rgba(255, 255, 255, 0.75),
+        inset -6px -6px 16px rgba(100, 185, 245, 0.45),
+        inset 0 -8px 14px rgba(255, 170, 225, 0.22),
+        inset -8px 0 14px rgba(130, 245, 230, 0.22),
+        0 12px 34px rgba(0, 0, 0, 0.4),
+        0 0 22px rgba(160, 220, 255, 0.35);
+      border: 1.5px solid rgba(255, 255, 255, 0.8);
+      animation: bubbleBreathing 4.5s ease-in-out infinite alternate;
     }
 
-    /* MINI BUBBLE TRAIL (Buble-buble kecil di bawah gelembung besar) */
+    /* MINI BUBBLE TRAIL (Realistic effervescent trailing bubbles) */
     .mini-bubble-trail {
       position: absolute;
       border-radius: 50%;
       pointer-events: none;
       background: radial-gradient(circle at 35% 30%, 
-        rgba(255, 255, 255, 0.8) 0%, 
-        rgba(255, 255, 255, 0.22) 35%, 
-        rgba(150, 215, 255, 0.08) 60%, 
-        rgba(180, 225, 255, 0.38) 90%, 
-        rgba(255, 255, 255, 0.8) 100%);
+        rgba(255, 255, 255, 0.85) 0%, 
+        rgba(255, 255, 255, 0.25) 35%, 
+        rgba(150, 220, 255, 0.08) 60%, 
+        rgba(180, 230, 255, 0.4) 90%, 
+        rgba(255, 255, 255, 0.85) 100%);
       box-shadow: 
-        inset 0 0 8px rgba(255, 255, 255, 0.7),
-        0 3px 10px rgba(0, 0, 0, 0.22);
-      border: 1px solid rgba(255, 255, 255, 0.7);
+        inset 0 0 8px rgba(255, 255, 255, 0.75),
+        0 3px 12px rgba(0, 0, 0, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.75);
       animation: wobbleMini 2.2s ease-in-out infinite alternate;
     }
 
@@ -273,41 +323,49 @@
       width: 32%;
       height: 25%;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(255, 255, 255, 0.95) 0%, transparent 80%);
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.98) 0%, transparent 80%);
       transform: rotate(-30deg);
     }
 
     @keyframes wobbleMini {
       0% {
-        transform: translateY(0px) translateX(-4px) scale(0.94);
+        transform: translateY(0px) translateX(-5px) scale(0.92);
+      }
+      50% {
+        transform: translateY(-5px) translateX(2px) scale(1.04);
       }
       100% {
-        transform: translateY(-8px) translateX(4px) scale(1.06);
+        transform: translateY(-10px) translateX(5px) scale(0.96);
       }
     }
 
+    /* Realistic buoyant underwater ascent with organic wobble & slight surface expansion */
     @keyframes riseUnderwater {
       0% {
         transform: translateY(0px) translateX(0px) scale(0.85);
         opacity: 0;
       }
-      8% {
-        opacity: 0.95;
+      6% {
+        opacity: 0.96;
       }
       25% {
-        transform: translateY(-30vh) translateX(var(--drift-1, -22px)) scale(0.92);
+        transform: translateY(-32vh) translateX(var(--drift-1, -24px)) scale(0.91);
       }
       50% {
-        transform: translateY(-62vh) translateX(var(--drift-2, 24px)) scale(1);
+        transform: translateY(-64vh) translateX(var(--drift-2, 26px)) scale(0.98);
       }
       75% {
-        transform: translateY(-92vh) translateX(var(--drift-3, -16px)) scale(1.02);
+        transform: translateY(-94vh) translateX(var(--drift-3, -18px)) scale(1.03);
       }
-      90% {
-        opacity: 0.95;
+      88% {
+        opacity: 0.96;
+      }
+      96% {
+        transform: translateY(-125vh) translateX(var(--drift-4, 14px)) scale(1.08);
+        opacity: 0.85;
       }
       100% {
-        transform: translateY(-138vh) translateX(var(--drift-4, 15px)) scale(1.05);
+        transform: translateY(-140vh) translateX(var(--drift-4, 16px)) scale(1.12);
         opacity: 0;
       }
     }

@@ -302,15 +302,25 @@
       const currentPhotoSrc = photoPool[photoPoolIndex];
       photoPoolIndex = (photoPoolIndex + 1) % photoPool.length;
 
-      // Gelembung-gelembung kecil yang ikut di bawah gelembung besar (3 hingga 5 buah)
-      const miniCount = Math.floor(Math.random() * 3) + 3; // 3, 4, atau 5 buah
+      // Gelembung-gelembung kecil yang ikut di bawah gelembung besar (4 hingga 6 buah dengan variasi ukuran realistis)
+      const miniCount = Math.floor(Math.random() * 3) + 4; // 4, 5, atau 6 buah
       let miniBubblesHTML = '';
 
       for (let i = 0; i < miniCount; i++) {
-        const miniSize = Math.floor(Math.random() * 20) + 18; // 18px s/d 38px
-        const bottomOffset = -(Math.floor(Math.random() * 24) + 22 + (i * 32)); // bertingkat di bawahnya
-        const leftOffset = Math.floor(Math.random() * 60) + 18; // 18% s/d 78%
-        const delay = (Math.random() * 1.8).toFixed(2);
+        // Variasi realistis: ada gelembung mikro (10-15px), kecil (18-26px), dan sedang (28-36px)
+        let miniSize;
+        if (i % 3 === 0) {
+          miniSize = Math.floor(Math.random() * 6) + 10; // Micro fizz bubble (10-15px)
+        } else if (i % 3 === 1) {
+          miniSize = Math.floor(Math.random() * 9) + 18; // Small bubble (18-26px)
+        } else {
+          miniSize = Math.floor(Math.random() * 10) + 28; // Medium wake bubble (28-37px)
+        }
+
+        const bottomOffset = -(Math.floor(Math.random() * 18) + 16 + (i * 26)); // bertingkat rapi di bawahnya
+        const leftOffset = Math.floor(Math.random() * 58) + 20; // 20% s/d 78%
+        const delay = (Math.random() * 2.2).toFixed(2);
+        const floatDuration = (Math.random() * 0.8 + 1.8).toFixed(2); // Variasi getaran fisik
 
         miniBubblesHTML += `
           <div class="mini-bubble-trail" style="
@@ -318,6 +328,7 @@
             height: ${miniSize}px;
             bottom: ${bottomOffset}px;
             left: ${leftOffset}%;
+            animation-duration: ${floatDuration}s;
             animation-delay: -${delay}s;
           "></div>
         `;
@@ -343,6 +354,38 @@
       risingContainer.appendChild(bubble);
     }
 
+
+    // Gelembung atmosferik bening alami (efek bawah laut nyata)
+    function spawnAmbientBubble() {
+      if (!document.body.classList.contains('bubble-mode-rising')) return;
+      const ambBubble = document.createElement('div');
+      ambBubble.className = 'mini-bubble-trail';
+      ambBubble.style.position = 'absolute';
+      ambBubble.style.bottom = '-60px';
+      
+      const ambSize = Math.floor(Math.random() * 26) + 14; // 14px s/d 40px
+      ambBubble.style.width = ambSize + 'px';
+      ambBubble.style.height = ambSize + 'px';
+
+      // Posisi acak sepanjang layar
+      const leftPos = Math.random() * 92 + 4;
+      ambBubble.style.left = leftPos + '%';
+      
+      const duration = (Math.random() * 6 + 12).toFixed(1);
+      ambBubble.style.animation = `riseUnderwater ${duration}s linear forwards, wobbleMini 2.5s ease-in-out infinite alternate`;
+      ambBubble.style.setProperty('--drift-1', (Math.random() * 30 - 15) + 'px');
+      ambBubble.style.setProperty('--drift-2', (Math.random() * 34 - 17) + 'px');
+      ambBubble.style.setProperty('--drift-3', (Math.random() * 30 - 15) + 'px');
+      ambBubble.style.setProperty('--drift-4', (Math.random() * 26 - 13) + 'px');
+      ambBubble.style.opacity = (Math.random() * 0.4 + 0.55).toFixed(2);
+
+      ambBubble.addEventListener('animationend', () => {
+        ambBubble.remove();
+      });
+
+      risingContainer.appendChild(ambBubble);
+    }
+
     // Mulai loop spawner
     function startRisingSpawner() {
       if (risingSpawnerInterval) clearInterval(risingSpawnerInterval);
@@ -351,8 +394,12 @@
       setTimeout(spawnRisingBubble, 1200);
       setTimeout(spawnRisingBubble, 2400);
 
-      // Interval berkala setiap 2.8 detik
-      risingSpawnerInterval = setInterval(spawnRisingBubble, 2800);
+      // Interval berkala gelembung foto besar setiap 2.8 detik
+      risingSpawnerInterval = setInterval(() => {
+        spawnRisingBubble();
+        // Diselingi gelembung atmosferik bening kecil
+        setTimeout(spawnAmbientBubble, 1400);
+      }, 2800);
     }
 
     function stopRisingSpawner() {
