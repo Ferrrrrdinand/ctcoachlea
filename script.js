@@ -246,7 +246,10 @@
     });
 
     // POOL FOTO UNTUK ANIMASI GELEMBUNG NAIK (BAWAH LAUT)
-    let photoPool = ['bubble1.jpg', 'bubble4.jpg', 'bubble6.jpg'];
+    let photoPool = [
+      'bubble1.jpg', 'bubble2.jpg', 'bubble3.jpg', 'bubble4.jpg', 'bubble5.jpg',
+      'bubble6.jpg', 'bubble7.jpg', 'bubble8.jpg', 'bubble9.jpg', 'bubble10.jpg'
+    ];
     let photoPoolIndex = 0;
     let risingSpawnerInterval = null;
 
