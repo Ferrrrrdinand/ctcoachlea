@@ -4,16 +4,26 @@ Countdown Timer modern dengan background grid biru, tipografi elegan (*Bebas Neu
 
 ---
 
-## 🌊 Fitur Baru: Animasi Gelembung Naik (Bawah Laut) & Galeri Banyak Foto
-Kini gelembung bisa **melayang naik ke atas secara perlahan dari bawah ke atas layar (*underwater bubbles effect*)** dengan goyangan halus, kilauan kaca 3D, dan bintang berkilau.
+## 📁 Struktur Berkas (Modular & Ringan)
 
-### Keunggulan Animasi Gelembung Naik:
+Proyek ini telah dipisahkan secara modular agar bersih, ringan, dan mudah dikelola:
+- 📄 **[index.html](file:///f:/Pelayanan/COUNTDOWN/index.html)** : Struktur HTML bersih dan semantik.
+- 🎨 **[style.css](file:///f:/Pelayanan/COUNTDOWN/style.css)** : Seluruh tata letak, efek 3D, bayangan, tipografi, dan animasi gelembung.
+- ⚙️ **[script.js](file:///f:/Pelayanan/COUNTDOWN/script.js)** : Logika penghitung waktu mundur (*timer*), suara lonceng bel audio, generator animasi gelembung bawah laut, upload galeri banyak foto, aturan unik 1 foto 1 gelembung, dan pintasan *keyboard*.
+- 🖼️ **`background.jpg`** : Gambar latar grid biru.
+- 🏷️ **`logo.png`** : Logo transparan AOG Church.
+- 🫧 **`bubble1.jpg`**, **`bubble4.jpg`**, **`bubble6.jpg`** : Foto-foto unik awal di dalam gelembung.
+
+---
+
+## 🌊 Fitur Animasi Gelembung Naik (Bawah Laut)
+Gelembung dapat **melayang naik ke atas secara perlahan dari bawah ke atas layar (*underwater bubbles effect*)** dengan goyangan halus, kilauan kaca 3D, dan bintang berkilau:
 1. **Dapat Memuat Banyak Foto Sekaligus (10, 20, 50+ Foto)**:
    - Setiap gelembung yang muncul dari bawah akan menampilkan foto-foto kenangan secara bergiliran (*slide carousel dinamis*).
    - Terapung di sisi kiri dan kanan layar secara proporsional sehingga **tidak menutupi teks Countdown** di tengah.
 2. **Pilihan Mode Animasi (Di Panel Kontrol Bawah)**:
-   - 🌊 **Gelembung Naik (Bawah Laut)** *(Aktif sebagai default)*: Gelembung terus mengalir dari bawah ke atas.
-   - ✨ **Gelembung Mengambang (Diam)**: Mode statis 6 gelembung di posisi tetap.
+   - 🌊 **Gelembung Naik (Bawah Laut)** *(Default)*
+   - ✨ **Gelembung Mengambang (Diam)**: Mode statis posisi tetap.
 
 ---
 
@@ -21,15 +31,13 @@ Kini gelembung bisa **melayang naik ke atas secara perlahan dari bawah ke atas l
 
 1. Buka `index.html` di browser.
 2. Klik tombol **`✏️ EDIT TEKS`** di panel kontrol bawah.
-3. Pada kotak biru **"Unggah Banyak Foto Sekaligus (Galeri Gelembung Naik)"**, klik tombol pilih berkas dan pilih puluhan foto dari komputer Anda sekaligus (gunakan `Ctrl + Klik` atau `Ctrl + A`).
+3. Pada kotak biru **"Unggah Banyak Foto Sekaligus (Galeri Gelembung Naik)"**, klik tombol pilih berkas dan pilih puluhan foto dari komputer Anda sekaligus (gunakan `Ctrl + A` atau tahan `Ctrl`).
 4. Semua foto tersebut akan otomatis bergiliran naik mengapung di dalam gelembung bawah laut!
-
-*(Secara bawaan, sistem sudah otomatis memuat 3 foto yang telah diunggah sebelumnya).*
 
 ---
 
 ## 🔒 Aturan: 1 Foto = 1 Gelembung
-Setiap gelembung yang sedang mengapung membawa foto unik dan bergantian secara estetik tanpa duplikasi berulang dalam satu gelembung.
+Setiap gelembung yang sedang mengapung membawa foto unik dan bergantian secara estetik tanpa duplikasi foto yang sama dalam satu tampilan gelembung.
 
 ---
 
