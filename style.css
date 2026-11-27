@@ -42,8 +42,8 @@
     /* Top Left Logo */
     .top-left-logo-wrapper {
       position: absolute;
-      top: 32px;
-      left: 42px;
+      top: 30px;
+      left: 40px;
       z-index: 10;
       display: flex;
       align-items: center;
@@ -51,11 +51,11 @@
     }
 
     .church-logo {
-      height: 54px;
+      height: 96px;
       width: auto;
       object-fit: contain;
-      filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 12px rgba(170, 220, 255, 0.4));
-      opacity: 0.95;
+      filter: drop-shadow(0 3px 12px rgba(0, 0, 0, 0.9)) drop-shadow(0 0 18px rgba(170, 220, 255, 0.5));
+      opacity: 0.98;
       transition: height 0.2s ease, opacity 0.2s ease;
     }
 
@@ -723,6 +723,7 @@
 
     /* Responsive scaling for lower resolutions or screens */
     @media (max-height: 820px) {
+      .church-logo { height: 76px; }
       .text-caps-condensed { font-size: 7.2rem; }
       .text-serif-italic { font-size: 6.8rem; }
       .text-script-middle { font-size: 4.2rem; right: -90px; }

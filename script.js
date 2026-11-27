@@ -226,7 +226,7 @@
       inputEditTitleScript.value = dispTitleScript.textContent;
       inputEditTitleSerif.value = dispTitleSerif.textContent;
       checkShowLogo.checked = logoWrapper.style.display !== 'none';
-      selectLogoSize.value = mainLogo.style.height || '54px';
+      selectLogoSize.value = mainLogo.style.height || '96px';
       editModal.classList.add('open');
     });
 
