@@ -283,14 +283,14 @@
       const bubble = document.createElement('div');
       bubble.className = 'rising-bubble-wrapper';
 
-      // Ukuran acak antara 135px s/d 220px
-      const size = Math.floor(Math.random() * 85) + 135;
+      // Ukuran acak antara 175px s/d 270px (lebih besar dan jelas)
+      const size = Math.floor(Math.random() * 95) + 175;
       bubble.style.width = size + 'px';
       bubble.style.height = size + 'px';
 
-      // Posisi horizontal: kiri (2% - 26%) atau kanan (74% - 94%) agar tidak menutupi timer di tengah
+      // Posisi horizontal: kiri (1% - 23%) atau kanan (74% - 95%) agar tidak menutupi timer di tengah
       const isLeft = Math.random() < 0.5;
-      const leftPos = isLeft ? (2 + Math.random() * 24) : (74 + Math.random() * 20);
+      const leftPos = isLeft ? (1 + Math.random() * 22) : (74 + Math.random() * 21);
       bubble.style.left = leftPos + '%';
 
       // Kecepatan melayang naik: 14s s/d 22s (anggun dan lembut seperti bawah laut)
@@ -312,17 +312,17 @@
       let miniBubblesHTML = '';
 
       for (let i = 0; i < miniCount; i++) {
-        // Variasi realistis: ada gelembung mikro (10-15px), kecil (18-26px), dan sedang (28-36px)
+        // Variasi realistis: mikro (14-20px), kecil (22-32px), dan sedang (34-48px) proporsional dengan gelembung besar
         let miniSize;
         if (i % 3 === 0) {
-          miniSize = Math.floor(Math.random() * 6) + 10; // Micro fizz bubble (10-15px)
+          miniSize = Math.floor(Math.random() * 7) + 14; // Micro fizz bubble (14-20px)
         } else if (i % 3 === 1) {
-          miniSize = Math.floor(Math.random() * 9) + 18; // Small bubble (18-26px)
+          miniSize = Math.floor(Math.random() * 11) + 22; // Small bubble (22-32px)
         } else {
-          miniSize = Math.floor(Math.random() * 10) + 28; // Medium wake bubble (28-37px)
+          miniSize = Math.floor(Math.random() * 15) + 34; // Medium wake bubble (34-48px)
         }
 
-        const bottomOffset = -(Math.floor(Math.random() * 18) + 16 + (i * 26)); // bertingkat rapi di bawahnya
+        const bottomOffset = -(Math.floor(Math.random() * 22) + 20 + (i * 30)); // bertingkat rapi di bawahnya
         const leftOffset = Math.floor(Math.random() * 58) + 20; // 20% s/d 78%
         const delay = (Math.random() * 2.2).toFixed(2);
         const floatDuration = (Math.random() * 0.8 + 1.8).toFixed(2); // Variasi getaran fisik

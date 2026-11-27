@@ -184,10 +184,10 @@
 
     /* Bubble placement matching reference composition */
     .bubble-lg-bottom-left {
-      width: 235px;
-      height: 235px;
-      bottom: 10%;
-      left: 3.5%;
+      width: 275px;
+      height: 275px;
+      bottom: 8%;
+      left: 2.5%;
       animation-duration: 7s;
     }
     .bubble-lg-bottom-left .bubble-star {
@@ -196,10 +196,10 @@
     }
 
     .bubble-top-left {
-      width: 130px;
-      height: 130px;
+      width: 165px;
+      height: 165px;
       top: 3%;
-      left: 7%;
+      left: 6%;
       animation-duration: 6s;
       animation-delay: -1s;
     }
@@ -209,37 +209,37 @@
     }
 
     .bubble-mid-left {
-      width: 85px;
-      height: 85px;
+      width: 120px;
+      height: 120px;
       top: 19%;
-      left: 24%;
+      left: 23%;
       animation-duration: 5s;
       animation-delay: -2s;
     }
 
     .bubble-mid-right {
-      width: 200px;
-      height: 200px;
-      top: 29%;
-      right: 9%;
+      width: 245px;
+      height: 245px;
+      top: 28%;
+      right: 8%;
       animation-duration: 7.5s;
       animation-delay: -3s;
     }
 
     .bubble-top-right {
-      width: 95px;
-      height: 95px;
-      top: 9%;
-      right: 9%;
+      width: 130px;
+      height: 130px;
+      top: 8%;
+      right: 8%;
       animation-duration: 6.2s;
       animation-delay: -1.5s;
     }
 
     .bubble-giant-bottom-right {
-      width: 230px;
-      height: 230px;
-      bottom: 8%;
-      right: 4%;
+      width: 270px;
+      height: 270px;
+      bottom: 7%;
+      right: 3.5%;
       animation-duration: 8.5s;
     }
 
@@ -272,7 +272,7 @@
 
     .rising-bubble-wrapper {
       position: absolute;
-      bottom: -320px;
+      bottom: -370px;
       pointer-events: none;
       animation: riseUnderwater linear forwards;
       will-change: transform, opacity;
