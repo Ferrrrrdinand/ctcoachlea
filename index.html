@@ -232,29 +232,43 @@
       text-align: center;
     }
 
-    /* TOP HEADER: Connecting Time / Coach Lea */
+    /* TOP HEADER: Connecting Time / Coach Lea (Placed at the very top center) */
     .header-group {
-      margin-bottom: 18px;
+      position: absolute;
+      top: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      z-index: 10;
+      pointer-events: none;
+      width: 100%;
+      max-width: 800px;
     }
 
     .header-line1 {
       font-family: 'Montserrat', sans-serif;
-      font-size: 2.1rem;
+      font-size: 2.25rem;
       font-weight: 800;
       color: #ffffff;
       letter-spacing: 0.5px;
       line-height: 1.2;
-      text-shadow: var(--text-shadow-strong);
+      text-shadow: 
+        0 4px 12px rgba(0, 0, 0, 0.85),
+        0 2px 4px rgba(0, 0, 0, 0.95),
+        0 0 18px rgba(160, 215, 255, 0.45);
     }
 
     .header-line2 {
       font-family: 'Montserrat', sans-serif;
-      font-size: 1.85rem;
+      font-size: 1.95rem;
       font-weight: 700;
       color: #e5f2fc;
       letter-spacing: 0.5px;
       line-height: 1.25;
-      text-shadow: var(--text-shadow-strong);
+      text-shadow: 
+        0 4px 12px rgba(0, 0, 0, 0.85),
+        0 2px 4px rgba(0, 0, 0, 0.95),
+        0 0 18px rgba(160, 215, 255, 0.45);
     }
 
     /* MAIN TITLE VIBES (Exact matching styles) */
@@ -665,6 +679,7 @@
       .text-script-middle { font-size: 3.2rem; right: -70px; }
       .digits { font-size: 6.2rem; }
       .sep { font-size: 5.2rem; }
+      .header-group { top: 20px; }
       .header-line1 { font-size: 1.7rem; }
       .header-line2 { font-size: 1.45rem; }
       .main-stage { padding-bottom: 80px; }
