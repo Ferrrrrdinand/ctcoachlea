@@ -276,10 +276,10 @@
       if (photoPool.length === 0) return;
 
       const bubble = document.createElement('div');
-      bubble.className = 'rising-bubble';
+      bubble.className = 'rising-bubble-wrapper';
 
-      // Ukuran acak antara 130px s/d 215px
-      const size = Math.floor(Math.random() * 85) + 130;
+      // Ukuran acak antara 135px s/d 220px
+      const size = Math.floor(Math.random() * 85) + 135;
       bubble.style.width = size + 'px';
       bubble.style.height = size + 'px';
 
@@ -302,13 +302,37 @@
       const currentPhotoSrc = photoPool[photoPoolIndex];
       photoPoolIndex = (photoPoolIndex + 1) % photoPool.length;
 
-      // Buat elemen foto, efek kilau kaca 3D, dan bintang berkilau
+      // Gelembung-gelembung kecil yang ikut di bawah gelembung besar (3 hingga 5 buah)
+      const miniCount = Math.floor(Math.random() * 3) + 3; // 3, 4, atau 5 buah
+      let miniBubblesHTML = '';
+
+      for (let i = 0; i < miniCount; i++) {
+        const miniSize = Math.floor(Math.random() * 20) + 18; // 18px s/d 38px
+        const bottomOffset = -(Math.floor(Math.random() * 24) + 22 + (i * 32)); // bertingkat di bawahnya
+        const leftOffset = Math.floor(Math.random() * 60) + 18; // 18% s/d 78%
+        const delay = (Math.random() * 1.8).toFixed(2);
+
+        miniBubblesHTML += `
+          <div class="mini-bubble-trail" style="
+            width: ${miniSize}px;
+            height: ${miniSize}px;
+            bottom: ${bottomOffset}px;
+            left: ${leftOffset}%;
+            animation-delay: -${delay}s;
+          "></div>
+        `;
+      }
+
+      // Buat elemen foto, efek kilau kaca 3D, bintang, dan gelembung-gelembung kecil di bawahnya
       bubble.innerHTML = `
-        <img src="${currentPhotoSrc}" class="bubble-photo-img" alt="Foto Gelembung">
-        <div class="bubble-gloss"></div>
-        <svg class="bubble-star" style="top: ${Math.random() * 25 + 10}%; right: ${Math.random() * 20 + 10}%; width: 22px; height: 22px;" viewBox="0 0 24 24">
-          <path d="M12 0 L14 9 L24 12 L14 15 L12 24 L10 15 L0 12 L10 9 Z" fill="#ffffff" />
-        </svg>
+        <div class="bubble-round-body">
+          <img src="${currentPhotoSrc}" class="bubble-photo-img" alt="Foto Gelembung">
+          <div class="bubble-gloss"></div>
+          <svg class="bubble-star" style="top: ${Math.random() * 25 + 10}%; right: ${Math.random() * 20 + 10}%; width: 22px; height: 22px;" viewBox="0 0 24 24">
+            <path d="M12 0 L14 9 L24 12 L14 15 L12 24 L10 15 L0 12 L10 9 Z" fill="#ffffff" />
+          </svg>
+        </div>
+        ${miniBubblesHTML}
       `;
 
       // Hapus otomatis saat gelembung sudah sampai di atas layar
