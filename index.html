@@ -219,6 +219,66 @@
       }
     }
 
+    /* RISING BUBBLES ANIMATION (UNDERWATER EFFECT) */
+    .rising-bubbles-layer {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 1;
+      display: none;
+    }
+
+    body.bubble-mode-rising .rising-bubbles-layer {
+      display: block;
+    }
+
+    body.bubble-mode-rising .bubbles-layer {
+      display: none;
+    }
+
+    .rising-bubble {
+      position: absolute;
+      bottom: -240px;
+      border-radius: 50%;
+      overflow: hidden;
+      box-shadow: 
+        inset 0 0 16px rgba(255, 255, 255, 0.55),
+        inset 5px 5px 12px rgba(255, 255, 255, 0.65),
+        inset -5px -5px 12px rgba(100, 175, 240, 0.4),
+        0 8px 28px rgba(0, 0, 0, 0.35);
+      border: 1.5px solid rgba(255, 255, 255, 0.7);
+      pointer-events: none;
+      animation: riseUnderwater linear forwards;
+      will-change: transform, opacity;
+    }
+
+    @keyframes riseUnderwater {
+      0% {
+        transform: translateY(0px) translateX(0px) scale(0.85);
+        opacity: 0;
+      }
+      8% {
+        opacity: 0.95;
+      }
+      25% {
+        transform: translateY(-30vh) translateX(var(--drift-1, -22px)) scale(0.92);
+      }
+      50% {
+        transform: translateY(-62vh) translateX(var(--drift-2, 24px)) scale(1);
+      }
+      75% {
+        transform: translateY(-92vh) translateX(var(--drift-3, -16px)) scale(1.02);
+      }
+      90% {
+        opacity: 0.95;
+      }
+      100% {
+        transform: translateY(-135vh) translateX(var(--drift-4, 15px)) scale(1.05);
+        opacity: 0;
+      }
+    }
+
     /* MAIN STAGE (Center content) */
     .main-stage {
       position: absolute;
@@ -688,7 +748,10 @@
     }
   </style>
 </head>
-<body class="mode-image">
+<body class="mode-image bubble-mode-rising">
+
+  <!-- Rising Bubbles Layer (Underwater rising animation) -->
+  <div class="rising-bubbles-layer" id="risingBubblesContainer"></div>
 
   <!-- Top Left Logo -->
   <div class="top-left-logo-wrapper" id="logoWrapper">
@@ -822,6 +885,15 @@
         <button class="btn btn-preset" onclick="adjustTime(-30)">-30S</button>
       </div>
 
+      <!-- Bubble Animation Mode Selector -->
+      <div class="control-cluster">
+        <span class="cluster-title">Animasi:</span>
+        <select id="bubbleModeSelect" class="select-dropdown">
+          <option value="rising" selected>🌊 Gelembung Naik (Bawah Laut)</option>
+          <option value="static">✨ Gelembung Mengambang (Diam)</option>
+        </select>
+      </div>
+
       <!-- Background Selector -->
       <div class="control-cluster">
         <span class="cluster-title">Background:</span>
@@ -886,6 +958,17 @@
 
       <div class="form-row">
         <label>Foto di Dalam Gelembung</label>
+        <div style="background:rgba(18, 55, 95, 0.5); padding:10px; border-radius:10px; border:1px solid rgba(140, 205, 255, 0.35); margin-bottom:12px;">
+          <span style="font-size:0.8rem; color:#d2ecff; font-weight:700; display:block; margin-bottom:4px;">
+            📸 Unggah Banyak Foto Sekaligus (Galeri Gelembung Naik):
+          </span>
+          <span style="font-size:0.72rem; color:#95c0e2; display:block; margin-bottom:6px;">
+            Pilih banyak foto sekaligus dari galeri/folder Anda (10, 20, 50+ foto). Foto-foto ini akan bergantian mengapung naik ke atas di dalam gelembung seperti gelembung bawah laut!
+          </span>
+          <input type="file" id="multiPhotoUpload" accept="image/*" multiple style="font-size:0.78rem; padding:4px; width:100%; background:#091a2e; border:1px solid #285482; border-radius:6px; color:#ffffff;">
+          <div id="multiPhotoCount" style="font-size:0.72rem; color:#7ce898; margin-top:4px; font-weight:600;"></div>
+        </div>
+
         <div style="font-size:0.72rem; color:#ffdd88; margin-bottom:4px; font-weight:600;">
           🔒 Aturan: 1 Foto hanya bisa menempati 1 Gelembung (tidak boleh duplikat).
         </div>
@@ -1206,6 +1289,118 @@
       mainLogo.style.height = selectLogoSize.value;
       editModal.classList.remove('open');
     });
+
+    // POOL FOTO UNTUK ANIMASI GELEMBUNG NAIK (BAWAH LAUT)
+    let photoPool = ['bubble1.jpg', 'bubble4.jpg', 'bubble6.jpg'];
+    let photoPoolIndex = 0;
+    let risingSpawnerInterval = null;
+
+    const risingContainer = document.getElementById('risingBubblesContainer');
+    const bubbleModeSelect = document.getElementById('bubbleModeSelect');
+    const multiPhotoUpload = document.getElementById('multiPhotoUpload');
+    const multiPhotoCount = document.getElementById('multiPhotoCount');
+
+    // Handle multi-photo upload
+    if (multiPhotoUpload) {
+      multiPhotoUpload.addEventListener('change', (e) => {
+        const files = Array.from(e.target.files);
+        if (files.length > 0) {
+          // Bersihkan pool lama dan isi dengan foto baru yang dipilih
+          photoPool = files.map(file => URL.createObjectURL(file));
+          photoPoolIndex = 0;
+          if (multiPhotoCount) {
+            multiPhotoCount.textContent = `✓ Berhasil memuat ${files.length} foto ke aliran gelembung naik!`;
+          }
+        }
+      });
+    }
+
+    // Fungsi spawn gelembung naik bawah laut
+    function spawnRisingBubble() {
+      if (!document.body.classList.contains('bubble-mode-rising')) return;
+      if (photoPool.length === 0) return;
+
+      const bubble = document.createElement('div');
+      bubble.className = 'rising-bubble';
+
+      // Ukuran acak antara 130px s/d 215px
+      const size = Math.floor(Math.random() * 85) + 130;
+      bubble.style.width = size + 'px';
+      bubble.style.height = size + 'px';
+
+      // Posisi horizontal: kiri (2% - 26%) atau kanan (74% - 94%) agar tidak menutupi timer di tengah
+      const isLeft = Math.random() < 0.5;
+      const leftPos = isLeft ? (2 + Math.random() * 24) : (74 + Math.random() * 20);
+      bubble.style.left = leftPos + '%';
+
+      // Kecepatan melayang naik: 14s s/d 22s (anggun dan lembut seperti bawah laut)
+      const duration = (Math.random() * 8 + 14).toFixed(1);
+      bubble.style.animationDuration = duration + 's';
+
+      // Goyangan acak ke kiri dan kanan saat naik
+      bubble.style.setProperty('--drift-1', (Math.random() * 40 - 20) + 'px');
+      bubble.style.setProperty('--drift-2', (Math.random() * 46 - 23) + 'px');
+      bubble.style.setProperty('--drift-3', (Math.random() * 40 - 20) + 'px');
+      bubble.style.setProperty('--drift-4', (Math.random() * 34 - 17) + 'px');
+
+      // Ambil foto berikutnya secara bergiliran (1 foto per gelembung)
+      const currentPhotoSrc = photoPool[photoPoolIndex];
+      photoPoolIndex = (photoPoolIndex + 1) % photoPool.length;
+
+      // Buat elemen foto, efek kilau kaca 3D, dan bintang berkilau
+      bubble.innerHTML = `
+        <img src="${currentPhotoSrc}" class="bubble-photo-img" alt="Foto Gelembung">
+        <div class="bubble-gloss"></div>
+        <svg class="bubble-star" style="top: ${Math.random() * 25 + 10}%; right: ${Math.random() * 20 + 10}%; width: 22px; height: 22px;" viewBox="0 0 24 24">
+          <path d="M12 0 L14 9 L24 12 L14 15 L12 24 L10 15 L0 12 L10 9 Z" fill="#ffffff" />
+        </svg>
+      `;
+
+      // Hapus otomatis saat gelembung sudah sampai di atas layar
+      bubble.addEventListener('animationend', () => {
+        bubble.remove();
+      });
+
+      risingContainer.appendChild(bubble);
+    }
+
+    // Mulai loop spawner
+    function startRisingSpawner() {
+      if (risingSpawnerInterval) clearInterval(risingSpawnerInterval);
+      // Spawn gelembung perdana bertahap
+      spawnRisingBubble();
+      setTimeout(spawnRisingBubble, 1200);
+      setTimeout(spawnRisingBubble, 2400);
+
+      // Interval berkala setiap 2.8 detik
+      risingSpawnerInterval = setInterval(spawnRisingBubble, 2800);
+    }
+
+    function stopRisingSpawner() {
+      if (risingSpawnerInterval) {
+        clearInterval(risingSpawnerInterval);
+        risingSpawnerInterval = null;
+      }
+      if (risingContainer) {
+        risingContainer.innerHTML = '';
+      }
+    }
+
+    // Switch mode gelembung naik / diam
+    if (bubbleModeSelect) {
+      bubbleModeSelect.addEventListener('change', (e) => {
+        if (e.target.value === 'rising') {
+          document.body.classList.add('bubble-mode-rising');
+          startRisingSpawner();
+        } else {
+          document.body.classList.remove('bubble-mode-rising');
+          stopRisingSpawner();
+        }
+      });
+    }
+
+    // Inisialisasi awal gelembung naik
+    startRisingSpawner();
 
     // Aturan 1 Foto = 1 Gelembung (Tidak Boleh Duplikat)
     const bubblePhotoKeys = {};

@@ -1,47 +1,35 @@
 # ⏱️ Aesthetic Countdown Timer
 
-Countdown Timer modern dengan background grid biru, tipografi elegan (*Bebas Neue*, *Playfair Display Italic*, *Dancing Script*), logo AOG Church, dan **gelembung kaca 3D yang dapat memuat foto**.
+Countdown Timer modern dengan background grid biru, tipografi elegan (*Bebas Neue*, *Playfair Display Italic*, *Dancing Script*), logo AOG Church, dan **gelembung kaca 3D dengan animasi mengapung naik ke atas seperti di bawah laut**.
 
 ---
 
-## 🔒 Aturan Foto Gelembung: 1 Foto = 1 Gelembung
-Sistem menerapkan aturan ketat: **setiap foto hanya boleh menempati 1 gelembung (tidak bisa diduplikat ke gelembung lain)**.
+## 🌊 Fitur Baru: Animasi Gelembung Naik (Bawah Laut) & Galeri Banyak Foto
+Kini gelembung bisa **melayang naik ke atas secara perlahan dari bawah ke atas layar (*underwater bubbles effect*)** dengan goyangan halus, kilauan kaca 3D, dan bintang berkilau.
 
-### Status Gelembung Saat Ini:
-- 🫧 **Gelembung 1 (Bawah Kiri)**: Foto 1 (*Selfie doa bersama*)
-- 🫧 **Gelembung 2 (Atas Kiri)**: Bening / Kosong *(siap untuk foto baru)*
-- 🫧 **Gelembung 3 (Tengah Kiri)**: Bening / Kosong *(siap untuk foto baru)*
-- 🫧 **Gelembung 4 (Tengah Kanan)**: Foto 2 (*Pose tangan bentuk hati*)
-- 🫧 **Gelembung 5 (Atas Kanan)**: Bening / Kosong *(siap untuk foto baru)*
-- 🫧 **Gelembung 6 (Bawah Kanan)**: Foto 3 (*Karya tote bag Spider-Man / kartu*)
-
----
-
-## 🚀 Cara Menjalankan
-
-1. Buka folder: `f:\Pelayanan\COUNTDOWN`
-2. Klik ganda (**Double Click**) file **`index.html`** di Google Chrome atau Microsoft Edge.
-3. Countdown langsung aktif dan siap digunakan!
+### Keunggulan Animasi Gelembung Naik:
+1. **Dapat Memuat Banyak Foto Sekaligus (10, 20, 50+ Foto)**:
+   - Setiap gelembung yang muncul dari bawah akan menampilkan foto-foto kenangan secara bergiliran (*slide carousel dinamis*).
+   - Terapung di sisi kiri dan kanan layar secara proporsional sehingga **tidak menutupi teks Countdown** di tengah.
+2. **Pilihan Mode Animasi (Di Panel Kontrol Bawah)**:
+   - 🌊 **Gelembung Naik (Bawah Laut)** *(Aktif sebagai default)*: Gelembung terus mengalir dari bawah ke atas.
+   - ✨ **Gelembung Mengambang (Diam)**: Mode statis 6 gelembung di posisi tetap.
 
 ---
 
-## 🫧 Cara Menambah atau Mengganti Foto Gelembung
+## 📸 Cara Memasukkan Banyak Foto Sekaligus
 
-### Cara 1: Langsung dari Menu Layar (Otomatis Cegah Duplikat)
 1. Buka `index.html` di browser.
 2. Klik tombol **`✏️ EDIT TEKS`** di panel kontrol bawah.
-3. Pada bagian **"Foto di Dalam Gelembung"**, pilih foto baru untuk nomor gelembung yang diinginkan.
-   - *Jika Anda memilih foto yang sama dengan gelembung lain, sistem akan otomatis menolak dan memunculkan peringatan.*
-   - Tersedia tombol **`✕ Hapus`** untuk mengosongkan kembali gelembung menjadi kaca bening.
+3. Pada kotak biru **"Unggah Banyak Foto Sekaligus (Galeri Gelembung Naik)"**, klik tombol pilih berkas dan pilih puluhan foto dari komputer Anda sekaligus (gunakan `Ctrl + Klik` atau `Ctrl + A`).
+4. Semua foto tersebut akan otomatis bergiliran naik mengapung di dalam gelembung bawah laut!
 
-### Cara 2: Menyimpan File Gambar ke Folder Proyek
-Simpan foto unik ke folder `f:\Pelayanan\COUNTDOWN` dengan nama berkas:
-- **`bubble1.jpg`** : Gelembung 1
-- **`bubble2.jpg`** : Gelembung 2
-- **`bubble3.jpg`** : Gelembung 3
-- **`bubble4.jpg`** : Gelembung 4
-- **`bubble5.jpg`** : Gelembung 5
-- **`bubble6.jpg`** : Gelembung 6
+*(Secara bawaan, sistem sudah otomatis memuat 3 foto yang telah diunggah sebelumnya).*
+
+---
+
+## 🔒 Aturan: 1 Foto = 1 Gelembung
+Setiap gelembung yang sedang mengapung membawa foto unik dan bergantian secara estetik tanpa duplikasi berulang dalam satu gelembung.
 
 ---
 
@@ -50,12 +38,12 @@ Simpan foto unik ke folder `f:\Pelayanan\COUNTDOWN` dengan nama berkas:
 - **Mulai / Jeda / Reset**: Tombol hijau `MULAI`, amber `JEDA`, dan `RESET`.
 - **Atur Waktu**: Masukkan Menit & Detik secara manual, lalu klik `TERAPKAN`.
 - **Preset Cepat**: Tombol `1M`, `3M`, `5M`, `10M`, `15M`, `+1M`, `+30S`, `-30S`.
+- **Pilihan Animasi**: Beralih antara *Gelembung Naik* atau *Gelembung Diam*.
 - **Pilihan Background**:
   - 🖼️ **Background Grid Gambar (Default)**: Menggunakan gambar `background.jpg`.
   - 🟩 **Green Screen (#00FF00)**: Untuk Chroma Keying di OBS.
   - ⬛ **Transparent**: Khusus OBS Browser Source (tembus pandang).
   - 🟪 **Magenta Screen**: Alternatif chroma key.
-- **Edit Teks, Logo & Foto**: Klik tombol `✏️ EDIT TEKS` untuk mengubah judul, nama pembicara, logo, atau foto gelembung.
 - **Sembunyikan Panel Kontrol**: Tekan tombol **`H`** atau klik tab panel bawah untuk menyembunyikan kontrol.
 
 ---
