@@ -249,7 +249,8 @@
     let photoPool = [
       'bubble1.jpg', 'bubble2.jpg', 'bubble3.jpg', 'bubble4.jpg', 'bubble5.jpg',
       'bubble6.jpg', 'bubble7.jpg', 'bubble8.jpg', 'bubble9.jpg', 'bubble10.jpg',
-      'bubble11.jpg'
+      'bubble11.jpg', 'bubble12.jpg', 'bubble13.jpg', 'bubble14.jpg', 'bubble15.jpg',
+      'bubble16.jpg', 'bubble17.jpg'
     ];
     let photoPoolIndex = 0;
     let risingSpawnerInterval = null;
