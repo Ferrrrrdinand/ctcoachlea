@@ -12,7 +12,7 @@ Proyek ini telah dipisahkan secara modular agar bersih, ringan, dan mudah dikelo
 - ⚙️ **[script.js](file:///f:/Pelayanan/COUNTDOWN/script.js)** : Logika penghitung waktu mundur (*timer*), suara lonceng bel audio, generator animasi gelembung bawah laut, upload galeri banyak foto, aturan unik 1 foto 1 gelembung, dan pintasan *keyboard*.
 - 🖼️ **`background.jpg`** : Gambar latar grid biru.
 - 🏷️ **`logo.png`** : Logo transparan AOG Church.
-- 🫧 **`bubble1.jpg` s/d `bubble10.jpg`** : Kumpulan 10 foto kebersamaan unik yang bergiliran mengapung di dalam gelembung.
+- 🫧 **`bubble1.jpg` s/d `bubble11.jpg`** : Kumpulan 11 foto kebersamaan unik yang bergiliran mengapung di dalam gelembung.
 
 ---
 
