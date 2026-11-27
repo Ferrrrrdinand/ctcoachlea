@@ -84,23 +84,50 @@
     .glass-bubble {
       position: absolute;
       border-radius: 50%;
-      background: radial-gradient(circle at 32% 28%, 
-        rgba(255, 255, 255, 0.65) 0%, 
-        rgba(255, 255, 255, 0.15) 30%, 
-        rgba(150, 210, 255, 0.05) 60%, 
-        rgba(180, 225, 255, 0.3) 90%, 
-        rgba(255, 255, 255, 0.7) 100%);
+      overflow: hidden;
       box-shadow: 
         inset 0 0 16px rgba(255, 255, 255, 0.5),
         inset 6px 6px 14px rgba(255, 255, 255, 0.6),
         inset -6px -6px 14px rgba(100, 175, 240, 0.4),
-        0 8px 24px rgba(0, 0, 0, 0.25);
-      border: 1.5px solid rgba(255, 255, 255, 0.55);
+        0 8px 24px rgba(0, 0, 0, 0.35);
+      border: 1.5px solid rgba(255, 255, 255, 0.65);
       animation: floatMotion ease-in-out infinite alternate;
     }
 
-    /* Bubble crescent highlight */
-    .glass-bubble::before {
+    /* Photo inside bubble */
+    .bubble-photo-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 20%;
+      border-radius: 50%;
+      z-index: 1;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    /* Glossy 3D glass reflection over photo/bubble */
+    .bubble-gloss {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      z-index: 2;
+      pointer-events: none;
+      background: radial-gradient(circle at 32% 28%, 
+        rgba(255, 255, 255, 0.55) 0%, 
+        rgba(255, 255, 255, 0.12) 32%, 
+        rgba(150, 210, 255, 0.04) 60%, 
+        rgba(180, 225, 255, 0.28) 90%, 
+        rgba(255, 255, 255, 0.65) 100%);
+      box-shadow: 
+        inset 0 0 14px rgba(255, 255, 255, 0.45),
+        inset 5px 5px 12px rgba(255, 255, 255, 0.55),
+        inset -5px -5px 12px rgba(100, 175, 240, 0.35);
+    }
+
+    .bubble-gloss::before {
       content: '';
       position: absolute;
       top: 14%;
@@ -118,15 +145,16 @@
       width: 24px;
       height: 24px;
       pointer-events: none;
+      z-index: 3;
       filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.9));
     }
 
     /* Bubble placement matching reference composition */
     .bubble-lg-bottom-left {
-      width: 220px;
-      height: 220px;
-      bottom: 8%;
-      left: 3%;
+      width: 235px;
+      height: 235px;
+      bottom: 10%;
+      left: 3.5%;
       animation-duration: 7s;
     }
     .bubble-lg-bottom-left .bubble-star {
@@ -652,40 +680,53 @@
 
   <!-- Bubbles Layer with Glossy 3D Refractions & Star Twinkles -->
   <div class="bubbles-layer" id="bubblesContainer">
-    
-    <!-- Bubble 1: Large Bottom Left -->
-    <div class="glass-bubble bubble-lg-bottom-left">
+    <!-- Bubble 1: Large Bottom Left (Loaded with Photo) -->
+    <div class="glass-bubble bubble-lg-bottom-left" id="bubble1">
+      <img src="bubble1.jpg" class="bubble-photo-img" id="imgBubble1" alt="Foto Gelembung 1" onerror="this.style.display='none'">
+      <div class="bubble-gloss"></div>
       <svg class="bubble-star" viewBox="0 0 24 24">
         <path d="M12 0 L14 9 L24 12 L14 15 L12 24 L10 15 L0 12 L10 9 Z" fill="#ffffff" />
       </svg>
     </div>
 
     <!-- Bubble 2: Top Left -->
-    <div class="glass-bubble bubble-top-left">
+    <div class="glass-bubble bubble-top-left" id="bubble2">
+      <img src="bubble2.jpg" class="bubble-photo-img" id="imgBubble2" alt="Foto Gelembung 2" onerror="this.style.display='none'">
+      <div class="bubble-gloss"></div>
       <svg class="bubble-star" viewBox="0 0 24 24">
-        <path d="M12 0 L14 9 L24 12 L14 15 L12 24 L10 9 L0 12 L10 9 Z" fill="#ffffff" />
+        <path d="M12 0 L14 9 L24 12 L14 15 L12 24 L10 15 L0 12 L10 9 Z" fill="#ffffff" />
       </svg>
     </div>
 
     <!-- Bubble 3: Mid Left -->
-    <div class="glass-bubble bubble-mid-left"></div>
+    <div class="glass-bubble bubble-mid-left" id="bubble3">
+      <img src="bubble3.jpg" class="bubble-photo-img" id="imgBubble3" alt="Foto Gelembung 3" onerror="this.style.display='none'">
+      <div class="bubble-gloss"></div>
+    </div>
 
     <!-- Bubble 4: Mid Right with highlight -->
-    <div class="glass-bubble bubble-mid-right">
+    <div class="glass-bubble bubble-mid-right" id="bubble4">
+      <img src="bubble4.jpg" class="bubble-photo-img" id="imgBubble4" alt="Foto Gelembung 4" onerror="this.style.display='none'">
+      <div class="bubble-gloss"></div>
       <svg class="bubble-star" style="top: 15%; right: 18%;" viewBox="0 0 24 24">
         <path d="M12 0 L14 9 L24 12 L14 15 L12 24 L10 15 L0 12 L10 9 Z" fill="#ffffff" />
       </svg>
     </div>
 
     <!-- Bubble 5: Top Right -->
-    <div class="glass-bubble bubble-top-right">
+    <div class="glass-bubble bubble-top-right" id="bubble5">
+      <img src="bubble5.jpg" class="bubble-photo-img" id="imgBubble5" alt="Foto Gelembung 5" onerror="this.style.display='none'">
+      <div class="bubble-gloss"></div>
       <svg class="bubble-star" style="bottom: 15%; left: 15%; width: 18px; height: 18px;" viewBox="0 0 24 24">
         <path d="M12 0 L14 9 L24 12 L14 15 L12 24 L10 15 L0 12 L10 9 Z" fill="#ffffff" />
       </svg>
     </div>
 
     <!-- Bubble 6: Giant Bottom Right -->
-    <div class="glass-bubble bubble-giant-bottom-right"></div>
+    <div class="glass-bubble bubble-giant-bottom-right" id="bubble6">
+      <img src="bubble6.jpg" class="bubble-photo-img" id="imgBubble6" alt="Foto Gelembung 6" onerror="this.style.display='none'">
+      <div class="bubble-gloss"></div>
+    </div>
   </div>
 
   <!-- Main Stage Area -->
@@ -821,6 +862,39 @@
       <div class="form-row">
         <label>Judul Utama (Teks Serif Italic Bawah)</label>
         <input type="text" id="inputEditTitleSerif" value="Army God">
+      </div>
+
+      <div class="form-row">
+        <label>Foto di Dalam Gelembung</label>
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:8px; margin-top:4px;">
+          <div>
+            <span style="font-size:0.73rem; color:#9ec2e0;">Gelembung 1 (Kiri Bawah):</span>
+            <input type="file" id="fileBubble1" accept="image/*" style="font-size:0.75rem; padding:3px; width:100%;">
+          </div>
+          <div>
+            <span style="font-size:0.73rem; color:#9ec2e0;">Gelembung 2 (Kiri Atas):</span>
+            <input type="file" id="fileBubble2" accept="image/*" style="font-size:0.75rem; padding:3px; width:100%;">
+          </div>
+          <div>
+            <span style="font-size:0.73rem; color:#9ec2e0;">Gelembung 3 (Kiri Tengah):</span>
+            <input type="file" id="fileBubble3" accept="image/*" style="font-size:0.75rem; padding:3px; width:100%;">
+          </div>
+          <div>
+            <span style="font-size:0.73rem; color:#9ec2e0;">Gelembung 4 (Kanan Tengah):</span>
+            <input type="file" id="fileBubble4" accept="image/*" style="font-size:0.75rem; padding:3px; width:100%;">
+          </div>
+          <div>
+            <span style="font-size:0.73rem; color:#9ec2e0;">Gelembung 5 (Kanan Atas):</span>
+            <input type="file" id="fileBubble5" accept="image/*" style="font-size:0.75rem; padding:3px; width:100%;">
+          </div>
+          <div>
+            <span style="font-size:0.73rem; color:#9ec2e0;">Gelembung 6 (Kanan Bawah):</span>
+            <input type="file" id="fileBubble6" accept="image/*" style="font-size:0.75rem; padding:3px; width:100%;">
+          </div>
+        </div>
+        <span style="font-size:0.7rem; color:#8ab1d0; margin-top:4px;">
+          💡 Tips: Anda juga bisa cukup menaruh file bernama <b>bubble1.jpg</b>, <b>bubble2.jpg</b>, dst. di folder proyek!
+        </span>
       </div>
 
       <div class="form-row">
@@ -1090,6 +1164,21 @@
       logoWrapper.style.display = checkShowLogo.checked ? 'flex' : 'none';
       mainLogo.style.height = selectLogoSize.value;
       editModal.classList.remove('open');
+    });
+
+    // Photo upload listener for bubbles
+    [1, 2, 3, 4, 5, 6].forEach(num => {
+      const fileInput = document.getElementById(`fileBubble${num}`);
+      const imgElem = document.getElementById(`imgBubble${num}`);
+      if (fileInput && imgElem) {
+        fileInput.addEventListener('change', (e) => {
+          const file = e.target.files[0];
+          if (file) {
+            imgElem.src = URL.createObjectURL(file);
+            imgElem.style.display = 'block';
+          }
+        });
+      }
     });
 
     // Button Listeners
